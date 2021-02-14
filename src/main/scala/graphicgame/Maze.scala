@@ -6,12 +6,15 @@ package graphicgame
 sealed trait CellType {
   def passable(entity: Entity): Boolean
 }
+
 case object Floor extends CellType {
   def passable(entity: Entity): Boolean = true
 }
+
 case object Wall extends CellType {
   def passable(entity: Entity): Boolean = false
 }
+
 // If you have things like doors, stairs, or other types of cells, put them here. I've included some ideas.
 //case class Door(key: Int) extends CellType {
 //  def passable(entity: Entity): Boolean = false // replace with a check if they have the right key.
@@ -38,6 +41,7 @@ trait Maze extends Serializable {
 
   /**
    * Tells you if there is a wall at a particular row and column location.
+   *
    * @param row The row to check.
    * @param col The column to check.
    */
@@ -51,9 +55,10 @@ trait Maze extends Serializable {
   /**
    * This tells you if a rectangular region is clear or not. You should use this to tell if an entity can
    * occupy a particular location.
-   * @param cx The center of the rectangular region in x.
-   * @param cy The center of the rectangular region in y.
-   * @param width The width of the rectangular region.
+   *
+   * @param cx     The center of the rectangular region in x.
+   * @param cy     The center of the rectangular region in y.
+   * @param width  The width of the rectangular region.
    * @param height The height of the rectangular region.
    */
   final def isClear(cx: Double, cy: Double, width: Double, height: Double, entity: Entity): Boolean = {

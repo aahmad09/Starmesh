@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaCompilerConfiguration">
+    <profile name="sbt 1" modules="GraphicalGame,graphic-game-s21-aahmad09_5186" />
+  </component>
+</project>
