@@ -1,24 +1,23 @@
 package graphicgame
 
-class Level(val maze: Maze, private var _entities: Seq[Entity]) {
-  println("start level run")
+class Level(val maze: Maze) {
 
-  //  val b = new Player(20, 20, Main.level)
-  //  +=(b)
+  private var _entities: List[Entity] = List(new Enemy(20,30, this, false, 1),
+    new Enemy(20,40, this, false, 1), new Enemy(20,50, this, false, 1))
 
+  println("test start")
 
-  var entities: Seq[Entity] = _entities
+  def entities: List[Entity] = _entities
 
   def +=(e: Entity): Unit = {
-    //     _entities ::= e
-    //    _entities = e :: _entities
+    _entities = e :: _entities
     println(_entities)
   }
 
   println(entities)
 
 
-  println("end level run")
+  println("test end")
 
   def updateAll(delay: Double): Unit = ???
 

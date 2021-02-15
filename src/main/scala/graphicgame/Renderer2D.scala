@@ -86,7 +86,7 @@ object Renderer2D {
     if (res == null) {
       new Image("file:src/main/resources" + path)
     } else {
-      new Image(res.toExternalForm())
+      new Image(res.toExternalForm)
     }
   }
 }

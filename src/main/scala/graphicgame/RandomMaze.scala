@@ -54,12 +54,12 @@ class RandomMaze private(val cellSize: Int, val wrap: Boolean, wallsInput: Array
   /**
    * Tells you the width of the maze in cells.
    */
-  def width = walls(0).length * cellSize
+  def width: Int = walls(0).length * cellSize
 
   /**
    * Tells you the height of the maze in cells.
    */
-  def height = walls.length * cellSize
+  def height: Int = walls.length * cellSize
 
   private def getWall(r: Int, c: Int): Int = {
     if (wrap) {

@@ -5,9 +5,9 @@ class Enemy(private var _x: Double, private var _y: Double,
             private var dead: Boolean,
             private var dir: Int) extends Entity {
 
-  override def width = 30.0
+  override def width = 2.0
 
-  override def height = 30.0
+  override def height = 2.0
 
 
   def update(delay: Double) = ???

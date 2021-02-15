@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/src/main/scala/graphicgame/RandomMaze.scala" />
+    <file url="file://$PROJECT_DIR$/src/main/scala/graphicgame/BasicMaze.scala" />
     <file url="file://$PROJECT_DIR$/src/main/scala/graphicgame/Renderer3D.scala" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_14" project-jdk-name="14" project-jdk-type="JavaSDK" />
