@@ -30,7 +30,8 @@ class RandomMaze private(val cellSize: Int, val wrap: Boolean, wallsInput: Array
         val cellRow = ((row + height) / cellSize) % walls.length
         val cellCol = ((col + height) / cellSize) % walls(0).length
         (fracRow, fracCol) match {
-          case (0, 0) => getWall(cellRow, cellCol) == 0 && (getWall(cellRow - 1, cellCol) & VerticalWall) == 0 && (getWall(cellRow, cellCol - 1) & HorizontalWall) == 0
+          case (0, 0) => getWall(cellRow, cellCol) == 0 && (getWall(cellRow - 1, cellCol) & VerticalWall) == 0 &&
+            (getWall(cellRow, cellCol - 1) & HorizontalWall) == 0
           case (0, _) => (getWall(cellRow, cellCol) & HorizontalWall) == 0
           case (_, 0) => (getWall(cellRow, cellCol) & VerticalWall) == 0
           case _ => true
@@ -42,7 +43,8 @@ class RandomMaze private(val cellSize: Int, val wrap: Boolean, wallsInput: Array
         val cellRow = row / cellSize
         val cellCol = col / cellSize
         (fracRow, fracCol) match {
-          case (0, 0) => getWall(cellRow, cellCol) == 0 && (getWall(cellRow - 1, cellCol) & VerticalWall) == 0 && (getWall(cellRow, cellCol - 1) & HorizontalWall) == 0
+          case (0, 0) => getWall(cellRow, cellCol) == 0 && (getWall(cellRow - 1, cellCol) & VerticalWall) == 0 &&
+            (getWall(cellRow, cellCol - 1) & HorizontalWall) == 0
           case (0, _) => (getWall(cellRow, cellCol) & HorizontalWall) == 0
           case (_, 0) => (getWall(cellRow, cellCol) & VerticalWall) == 0
           case _ => true

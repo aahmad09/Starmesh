@@ -10,7 +10,7 @@ class Enemy(private var _x: Double, private var _y: Double,
   override def height = 2.0
 
 
-  def update(delay: Double) = ???
+  def update(delay: Double): Unit = None
 
   def stillHere(): Boolean = ???
 

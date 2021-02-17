@@ -2,15 +2,16 @@ package graphicgame
 
 class Level(val maze: Maze) {
 
-  private var _entities: List[Entity] = List(new Enemy(20,30, this, false, 1),
-    new Enemy(20,40, this, false, 1), new Enemy(20,50, this, false, 1))
+  private var _entities: Seq[Entity] = Seq(new Enemy(20, 30, this, false, 1),
+    new Enemy(20, 40, this, false, 1), new Enemy(20, 50, this,
+      false, 1))
 
   println("test start")
 
-  def entities: List[Entity] = _entities
+  def entities: Seq[Entity] = _entities
 
   def +=(e: Entity): Unit = {
-    _entities = e :: _entities
+    _entities = e +: _entities
     println(_entities)
   }
 
@@ -19,7 +20,9 @@ class Level(val maze: Maze) {
 
   println("test end")
 
-  def updateAll(delay: Double): Unit = ???
+  def updateAll(delay: Double): Unit = {
+    _entities.foreach(_.update(delay))
+  }
 
 }
 

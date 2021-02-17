@@ -1,10 +1,11 @@
 package graphicgame
 
 import scalafx.Includes._
+import scalafx.animation.AnimationTimer
 import scalafx.application.JFXApp
 import scalafx.scene.Scene
 import scalafx.scene.canvas.{Canvas, GraphicsContext}
-import scalafx.scene.input.KeyEvent
+import scalafx.scene.input.{KeyEvent, _}
 import scalafx.scene.paint.Color
 
 /**
@@ -32,16 +33,32 @@ object Main extends JFXApp {
     scene = new Scene(800, 800) {
       fill = Color.Azure
       content += canvas
-      renderer.render(currentLevel, 20, 20)
-//      onKeyPressed = (ke: KeyEvent) => {
-//        ke.code match {
-//          case KeyCode.Up => box.y = box.y.value - 2
-//          case KeyCode.Down => box.y = box.y.value + 2
-//          case KeyCode.Left => box.x = box.x.value - 2
-//          case KeyCode.Right => box.x = box.x.value + 2
-//          case _ =>
-//        }
-//      }
+
+      onKeyPressed = (ke: KeyEvent) => {
+        if (ke.code == KeyCode.Left) player1.leftPressed()
+        if (ke.code == KeyCode.Right) player1.rightPressed()
+        if (ke.code == KeyCode.Up) player1.upPressed()
+        if (ke.code == KeyCode.Down) player1.downPressed()
+      }
+      onKeyReleased = (ke: KeyEvent) => {
+        if (ke.code == KeyCode.Left) player1.leftReleased()
+        if (ke.code == KeyCode.Right) player1.rightReleased()
+        if (ke.code == KeyCode.Up) player1.upReleased()
+        if (ke.code == KeyCode.Down) player1.downReleased()
+      }
+
+      var lastTime: Long = -1L
+      val timer: AnimationTimer = AnimationTimer { time =>
+        if (lastTime >= 0) {
+          val dt = (time - lastTime) / 1e9
+          currentLevel.updateAll(dt)
+          renderer.render(currentLevel, 20, 20)
+        }
+        lastTime = time
+      }
+      timer.start()
+
     }
+
   }
 }

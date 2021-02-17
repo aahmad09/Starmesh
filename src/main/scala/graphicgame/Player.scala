@@ -1,43 +1,54 @@
 package graphicgame
 
-import scalafx.scene.input.{KeyCode, KeyEvent}
+class Player(private var _x: Double, private var _y: Double, val level: Level) extends Entity {
 
-class Player(private var _x: Double, private var _y: Double, private var _level: Level) extends Entity {
-
-  def x: Double = _x
-
-  def y: Double = _y
+  val speed = 100
+  private var upHeld = false
+  private var downHeld = false
+  private var leftHeld = false
+  private var rightHeld = false
 
   override def width = 2.0
 
   override def height = 2.0
 
-  def update(delay: Double): Unit = ???
-
-  def level: Level = _level
-
-  def move(dx: Double, dy: Double): Unit = {
-    _x += dx
-    _y += dy
+  def update(dt: Double): Unit = {
+    if (leftHeld) move(-(speed * dt), 0)
+    if (rightHeld) move(speed * dt, 0)
+    if (downHeld) move(0, speed * dt)
+    if (upHeld) move(0, -(speed * dt))
   }
+
+  def move(dx: Double, dy: Double): Player = {
+    println(s"${dx} , ${dy}")
+    new Player(_x + dx, _y + dy, level)
+  }
+
+  def x: Double = _x
+
+  def y: Double = _y
 
   def stillHere(): Boolean = ???
 
   def postCheck(): Unit = ???
 
-  def upPressed(): Unit = ???
+  def upPressed(): Unit = upHeld = true
 
-  def downPressed(): Unit = ???
+  def downPressed(): Unit = downHeld = true
 
-//  onKeyPressed = (ke: KeyEvent) => {
-//    ke.code match {
-//      case KeyCode.Up => box.y = box.y.value - 2
-//      case KeyCode.Down => box.y = box.y.value + 2
-//      case KeyCode.Left => box.x = box.x.value - 2
-//      case KeyCode.Right => box.x = box.x.value + 2
-//      case _ =>
-//    }
-//  }
+  def leftPressed(): Unit = leftHeld = true
+
+  def rightPressed(): Unit = rightHeld = true
+
+  def upReleased(): Unit = upHeld = false
+
+  def downReleased(): Unit = downHeld = false
+
+  def leftReleased(): Unit = leftHeld = false
+
+  def rightReleased(): Unit = rightHeld = false
+
+
   //fireUpPressed():Unit
   //moveUpReleased():Unit
   //fireUpReleased():Unit
