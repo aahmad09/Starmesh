@@ -8,16 +8,6 @@ import scalafx.scene.canvas.{Canvas, GraphicsContext}
 import scalafx.scene.input.{KeyEvent, _}
 import scalafx.scene.paint.Color
 
-
-/**
- * ✓ Get the maze drawing in the window. This requires floor and wall images to be displayed.
- * ✓ Get a Player showing up on the maze.
- * ✓ Get an Enemy showing up on the maze.
- * ✓ Make the Player move with user input.
- * ✓ Make the Enemy move randomly.
- * ✓ Make it so they don’t go through walls.
- * */
-
 object Main extends JFXApp {
 
   val maze: Maze = RandomMaze(3, wrap = true, 25, 25, 0.6)

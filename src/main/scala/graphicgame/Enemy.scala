@@ -12,8 +12,6 @@ class Enemy(private var _x: Double, private var _y: Double,
   dir = r.nextInt(4)
 
   def update(delay: Double): Unit = {
-    println(dir)
-
     dir match {
       case 0 => if (level.maze.isClear(_x + speed * delay, _y, this.width, this.height, this))
         _x += speed * delay else dir = r.nextInt(4)
