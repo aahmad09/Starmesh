@@ -8,6 +8,7 @@ import scalafx.scene.canvas.{Canvas, GraphicsContext}
 import scalafx.scene.input.{KeyEvent, _}
 import scalafx.scene.paint.Color
 
+
 /**
  * ✓ Get the maze drawing in the window. This requires floor and wall images to be displayed.
  * ✓ Get a Player showing up on the maze.
@@ -25,7 +26,7 @@ object Main extends JFXApp {
   val renderer = new Renderer2D(gc, 20)
 
   val currentLevel = new Level(maze)
-  val player1 = new Player(20, 20, currentLevel)
+  var player1 = new Player(20, 20, currentLevel)
   currentLevel += player1
 
   stage = new JFXApp.PrimaryStage {
@@ -35,27 +36,34 @@ object Main extends JFXApp {
       content += canvas
 
       onKeyPressed = (ke: KeyEvent) => {
-        if (ke.code == KeyCode.Left) player1.leftPressed()
-        if (ke.code == KeyCode.Right) player1.rightPressed()
-        if (ke.code == KeyCode.Up) player1.upPressed()
-        if (ke.code == KeyCode.Down) player1.downPressed()
+        ke.code match {
+          case KeyCode.Left => player1.leftPressed()
+          case KeyCode.Right => player1.rightPressed()
+          case KeyCode.Up => player1.upPressed()
+          case KeyCode.Down => player1.downPressed()
+          case _ =>
+        }
       }
+
       onKeyReleased = (ke: KeyEvent) => {
-        if (ke.code == KeyCode.Left) player1.leftReleased()
-        if (ke.code == KeyCode.Right) player1.rightReleased()
-        if (ke.code == KeyCode.Up) player1.upReleased()
-        if (ke.code == KeyCode.Down) player1.downReleased()
+        ke.code match {
+          case KeyCode.Left => player1.leftReleased()
+          case KeyCode.Right => player1.rightReleased()
+          case KeyCode.Up => player1.upReleased()
+          case KeyCode.Down => player1.downReleased()
+          case _ =>
+        }
       }
 
       var lastTime: Long = -1L
-      val timer: AnimationTimer = AnimationTimer { time =>
+      val timer: AnimationTimer = AnimationTimer( time => {
         if (lastTime >= 0) {
           val dt = (time - lastTime) / 1e9
           currentLevel.updateAll(dt)
           renderer.render(currentLevel, 20, 20)
         }
         lastTime = time
-      }
+      })
       timer.start()
 
     }
