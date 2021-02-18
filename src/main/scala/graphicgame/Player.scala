@@ -1,16 +1,13 @@
 package graphicgame
 
-class Player(private var _x: Double, private var _y: Double, val level: Level) extends Entity {
+class Player(private var _x: Double, private var _y: Double,
+             val level: Level) extends Entity {
 
   val speed = 3
   private var upHeld = false
   private var downHeld = false
   private var leftHeld = false
   private var rightHeld = false
-
-  override def width = 1.0
-
-  override def height = 1.0
 
   def update(dt: Double): Unit = {
     if (leftHeld) move(-(speed * dt), 0)
@@ -20,9 +17,15 @@ class Player(private var _x: Double, private var _y: Double, val level: Level) e
   }
 
   def move(dx: Double, dy: Double): Unit = {
-    _x += dx
-    _y += dy
+    if (level.maze.isClear(_x + dx, _y + dy, width, height, this)) {
+      _x += dx
+      _y += dy
+    }
   }
+
+  override def width = 1.0
+
+  override def height = 1.0
 
   def x: Double = _x
 

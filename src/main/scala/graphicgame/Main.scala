@@ -13,14 +13,14 @@ import scalafx.scene.paint.Color
  * ✓ Get the maze drawing in the window. This requires floor and wall images to be displayed.
  * ✓ Get a Player showing up on the maze.
  * ✓ Get an Enemy showing up on the maze.
- * 4. Make the Player move with user input.
- * 5. Make the Enemy move randomly.
- * 6. Make it so they don’t go through walls.
+ * ✓ Make the Player move with user input.
+ * ✓ Make the Enemy move randomly.
+ * ✓ Make it so they don’t go through walls.
  * */
 
 object Main extends JFXApp {
 
-  val maze: Maze = RandomMaze(3, wrap = false, 20, 20, 0.6)
+  val maze: Maze = RandomMaze(3, wrap = true, 25, 25, 0.6)
   val canvas = new Canvas(800, 800)
   val gc: GraphicsContext = canvas.graphicsContext2D
   val renderer = new Renderer2D(gc, 20)
@@ -56,7 +56,7 @@ object Main extends JFXApp {
       }
 
       var lastTime: Long = -1L
-      val timer: AnimationTimer = AnimationTimer( time => {
+      val timer: AnimationTimer = AnimationTimer(time => {
         if (lastTime >= 0) {
           val dt = (time - lastTime) / 1e9
           currentLevel.updateAll(dt)

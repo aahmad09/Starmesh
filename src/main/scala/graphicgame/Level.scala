@@ -2,8 +2,8 @@ package graphicgame
 
 class Level(val maze: Maze) {
 
-  private var _entities: Seq[Entity] = Seq(new Enemy(20, 30, this, false, 1),
-    new Enemy(20, 40, this, false, 1), new Enemy(20, 50, this,
+  private var _entities: Seq[Entity] = Seq(new Enemy(11, 12, this, false, 1),
+    new Enemy(30, 29, this, false, 1), new Enemy(20, 20, this,
       false, 1))
 
   println("test start")
