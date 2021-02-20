@@ -7,7 +7,7 @@ class Enemy(private var _x: Double, private var _y: Double,
             private var dead: Boolean,
             private var dir: Int) extends Entity {
 
-  val speed = 1
+  val speed = 4
   val r: Random.type = scala.util.Random
   dir = r.nextInt(4)
 

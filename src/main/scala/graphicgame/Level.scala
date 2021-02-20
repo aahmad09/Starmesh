@@ -1,10 +1,21 @@
 package graphicgame
 
+import scala.util.Random
+
 class Level(val maze: Maze) {
 
-  private var _entities: Seq[Entity] = Seq(new Enemy(11, 12, this, false, 1),
-    new Enemy(30, 29, this, false, 1), new Enemy(20, 20, this,
-      false, 1))
+  val r: Random.type = scala.util.Random
+  var enemyCount = 3
+  private var _entities: Seq[Entity] = Nil
+  while (enemyCount != 0) {
+    val x = r.nextInt(40)
+    val y = r.nextInt(40)
+    val tempEnemy = new Enemy(x, y, this, false, 1)
+    if (this.maze.isClear(tempEnemy.x, tempEnemy.y, tempEnemy.width, tempEnemy.height, tempEnemy)) {
+      this += tempEnemy
+      enemyCount -= 1
+    }
+  }
 
   println("test start")
 
