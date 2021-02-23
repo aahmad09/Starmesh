@@ -8,10 +8,7 @@ import scalafx.scene.canvas.{Canvas, GraphicsContext}
 import scalafx.scene.input.{KeyEvent, _}
 import scalafx.scene.paint.Color
 
-/**
- * TODO:
- * Prevent entities from leaving the window
- * */
+
 
 object Main extends JFXApp {
 

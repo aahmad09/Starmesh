@@ -17,19 +17,16 @@ class Level(val maze: Maze) {
     }
   }
 
-  println("test start")
 
   def entities: Seq[Entity] = _entities
 
   def +=(e: Entity): Unit = {
     _entities = e +: _entities
-    println(_entities)
   }
 
-  println(entities)
-
-
-  println("test end")
+  def -=(e: Entity): Unit = {
+    _entities = _entities.filter(_ != e)
+  }
 
   def updateAll(delay: Double): Unit = {
     _entities.foreach(_.update(delay))

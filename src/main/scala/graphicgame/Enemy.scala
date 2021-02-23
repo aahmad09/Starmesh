@@ -12,6 +12,7 @@ class Enemy(private var _x: Double, private var _y: Double,
   dir = r.nextInt(4)
 
   def update(delay: Double): Unit = {
+    //move in another random direction if enemy hits a wall
     dir match {
       case 0 => if (level.maze.isClear(_x + speed * delay, _y, this.width, this.height, this))
         _x += speed * delay else dir = r.nextInt(4)
@@ -29,7 +30,7 @@ class Enemy(private var _x: Double, private var _y: Double,
 
   override def height = 1
 
-  def stillHere(): Boolean = ???
+  def stillHere(): Boolean = true
 
   def postCheck(): Unit = ???
 

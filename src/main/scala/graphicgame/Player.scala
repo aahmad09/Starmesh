@@ -10,10 +10,12 @@ class Player(private var _x: Double, private var _y: Double,
   private var rightHeld = false
 
   def update(dt: Double): Unit = {
+
     if (leftHeld) move(-(speed * dt), 0)
     if (rightHeld) move(speed * dt, 0)
     if (downHeld) move(0, speed * dt)
     if (upHeld) move(0, -(speed * dt))
+
   }
 
   def move(dx: Double, dy: Double): Unit = {
@@ -31,7 +33,7 @@ class Player(private var _x: Double, private var _y: Double,
 
   def y: Double = _y
 
-  def stillHere(): Boolean = ???
+  def stillHere(): Boolean = true
 
   def postCheck(): Unit = ???
 
