@@ -23,7 +23,6 @@ class Enemy(private var _x: Double, private var _y: Double,
       case 3 => if (level.maze.isClear(_x, _y - speed * delay, this.width, this.height, this))
         _y -= speed * delay else dir = r.nextInt(4)
     }
-
   }
 
   override def width = 1

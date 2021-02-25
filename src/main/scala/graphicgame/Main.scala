@@ -8,12 +8,10 @@ import scalafx.scene.canvas.{Canvas, GraphicsContext}
 import scalafx.scene.input.{KeyEvent, _}
 import scalafx.scene.paint.Color
 
-
-
 object Main extends JFXApp {
 
-  val maze: Maze = RandomMaze(3, wrap = true, 25, 25, 0.6)
-  val canvas = new Canvas(1000, 800)
+  val maze: Maze = RandomMaze(3, wrap = false, 13, 13, 0.6)
+  val canvas = new Canvas(800, 800)
   val gc: GraphicsContext = canvas.graphicsContext2D
   val renderer = new Renderer2D(gc, 20)
 
@@ -23,7 +21,7 @@ object Main extends JFXApp {
 
   stage = new JFXApp.PrimaryStage {
     title = "StarMesh"
-    scene = new Scene(1000, 800) {
+    scene = new Scene(800, 800) {
       fill = Color.Azure
       content += canvas
 

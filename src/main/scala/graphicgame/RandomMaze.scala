@@ -77,11 +77,9 @@ object RandomMaze {
   private val VerticalWall = 2
   private val offsets = Array(0 -> -1, 1 -> 0, 0 -> 1, -1 -> 0)
 
-  /**
-   * This is just a sample that makes a maze and prints it out so that you can see what it looks like.
-   */
+
   def main(args: Array[String]): Unit = {
-    val maze = RandomMaze(3, false, 20, 20, 0.6)
+    val maze = RandomMaze(3, wrap = false, 20, 20, 0.6)
     for (r <- -5 until maze.height + 5) {
       for (c <- -5 until maze.width + 5) {
         if (maze(r, c) == Wall) print('#') else print(' ')
