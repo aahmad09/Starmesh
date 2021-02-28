@@ -3,11 +3,12 @@ package graphicgame
 import scala.util.Random
 
 class Enemy(private var _x: Double, private var _y: Double,
-            var level: Level,
+            val level: Level,
             private var dead: Boolean,
             private var dir: Int) extends Entity {
 
   val speed = 4
+
   val r: Random.type = scala.util.Random
   dir = r.nextInt(4)
 
@@ -23,7 +24,15 @@ class Enemy(private var _x: Double, private var _y: Double,
       case 3 => if (level.maze.isClear(_x, _y - speed * dt, this.width, this.height, this))
         _y -= speed * dt else dir = r.nextInt(4)
     }
+
+    if (r.nextInt(200) == 5) {
+      level += new Bullet(_x, _y, level, r.nextInt(4))
+    }
   }
+
+  override def width: Double = 3.0
+
+  override def height: Double = 3.0
 
   def stillHere(): Boolean = true
 
@@ -32,8 +41,4 @@ class Enemy(private var _x: Double, private var _y: Double,
   def x: Double = _x
 
   def y: Double = _y
-
-  override def width: Double = 1
-
-  override def height: Double = 1
 }

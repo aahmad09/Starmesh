@@ -4,15 +4,30 @@ class Player(private var _x: Double, private var _y: Double,
              val level: Level) extends Entity {
 
   val speed = 3
-  private var upHeld, downHeld, leftHeld, rightHeld = false
+  private var upHeld, downHeld, leftHeld, rightHeld, fireHeld = false
+
+  private var bulletReloadTimer: Double = 0
+  private var bulletDir: Int = 0
 
   def update(dt: Double): Unit = {
+    bulletReloadTimer += dt
 
-    if (leftHeld) move(-(speed * dt), 0)
-    if (rightHeld) move(speed * dt, 0)
-    if (downHeld) move(0, speed * dt)
-    if (upHeld) move(0, -(speed * dt))
-
+    if (leftHeld) {
+      move(-(speed * dt), 0); bulletDir = 1
+    }
+    if (rightHeld) {
+      move(speed * dt, 0); bulletDir = 0
+    }
+    if (downHeld) {
+      move(0, speed * dt); bulletDir = 2
+    }
+    if (upHeld) {
+      move(0, -(speed * dt)); bulletDir = 3
+    }
+    if (fireHeld && bulletReloadTimer > 1.0) {
+      level += new Bullet(_x, _y, level, bulletDir)
+      bulletReloadTimer = 0
+    }
   }
 
   def move(dx: Double, dy: Double): Unit = {
@@ -22,6 +37,10 @@ class Player(private var _x: Double, private var _y: Double,
     }
   }
 
+  override def width = 2.5
+
+  override def height = 2.5
+
   def stillHere(): Boolean = true
 
   def postCheck(): Unit = ???
@@ -29,10 +48,6 @@ class Player(private var _x: Double, private var _y: Double,
   def x: Double = _x
 
   def y: Double = _y
-
-  override def width = 1.0
-
-  override def height = 1.0
 
   def upPressed(): Unit = upHeld = true
 
@@ -50,8 +65,8 @@ class Player(private var _x: Double, private var _y: Double,
 
   def rightReleased(): Unit = rightHeld = false
 
+  def fireUpPressed(): Unit = fireHeld = true
 
-  //fireUpPressed():Unit
-  //fireUpReleased():Unit
+  def fireUpReleased(): Unit = fireHeld = false
 
 }

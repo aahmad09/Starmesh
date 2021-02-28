@@ -10,7 +10,7 @@ import scalafx.scene.paint.Color
 
 object Main extends JFXApp {
 
-  val maze: Maze = RandomMaze(4, wrap = false, 20, 20, 0.5)
+  val maze: Maze = RandomMaze(8, wrap = false, 20, 20, 0.5)
   val canvas = new Canvas(1200, 800)
   val gc: GraphicsContext = canvas.graphicsContext2D
   val renderer = new Renderer2D(gc, 20)
@@ -43,6 +43,7 @@ object Main extends JFXApp {
           case KeyCode.Right => player1.rightPressed()
           case KeyCode.Up => player1.upPressed()
           case KeyCode.Down => player1.downPressed()
+          case KeyCode.Space => player1.fireUpPressed()
           case _ =>
         }
       }
@@ -53,6 +54,7 @@ object Main extends JFXApp {
           case KeyCode.Right => player1.rightReleased()
           case KeyCode.Up => player1.upReleased()
           case KeyCode.Down => player1.downReleased()
+          case KeyCode.Space => player1.fireUpReleased()
           case _ =>
         }
       }

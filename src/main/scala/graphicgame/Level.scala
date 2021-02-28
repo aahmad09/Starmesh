@@ -24,9 +24,9 @@ class Level(val maze: Maze) {
     _entities = e +: _entities
   }
 
-//  def -=(e: Entity): Unit = {
-//    _entities = _entities.filter(_ != e)
-//  }
+  def -=(e: Entity): Unit = {
+    _entities = _entities.filter(_ != e)
+  }
 
   def updateAll(delay: Double): Unit = {
     _entities.foreach(_.update(delay))
