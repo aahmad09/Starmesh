@@ -4,10 +4,7 @@ class Player(private var _x: Double, private var _y: Double,
              val level: Level) extends Entity {
 
   val speed = 3
-  private var upHeld = false
-  private var downHeld = false
-  private var leftHeld = false
-  private var rightHeld = false
+  private var upHeld, downHeld, leftHeld, rightHeld = false
 
   def update(dt: Double): Unit = {
 
@@ -25,17 +22,17 @@ class Player(private var _x: Double, private var _y: Double,
     }
   }
 
-  override def width = 1.0
+  def stillHere(): Boolean = true
 
-  override def height = 1.0
+  def postCheck(): Unit = ???
 
   def x: Double = _x
 
   def y: Double = _y
 
-  def stillHere(): Boolean = true
+  override def width = 1.0
 
-  def postCheck(): Unit = ???
+  override def height = 1.0
 
   def upPressed(): Unit = upHeld = true
 
@@ -55,7 +52,6 @@ class Player(private var _x: Double, private var _y: Double,
 
 
   //fireUpPressed():Unit
-  //moveUpReleased():Unit
   //fireUpReleased():Unit
 
 }

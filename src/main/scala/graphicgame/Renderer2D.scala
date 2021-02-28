@@ -49,7 +49,7 @@ class Renderer2D(gc: GraphicsContext, blockSize: Double) {
       val img = e match {
         case p: Player => playerImage
         case e: Enemy => enemyImage
-        //        case b: Bullet => bulletImage
+        case b: Bullet => bulletImage
         //        case g: Generator => generatorImage
       }
       if (level.maze.wrap) {

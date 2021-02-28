@@ -10,20 +10,32 @@ import scalafx.scene.paint.Color
 
 object Main extends JFXApp {
 
-  val maze: Maze = RandomMaze(3, wrap = false, 13, 13, 0.6)
-  val canvas = new Canvas(800, 800)
+  val maze: Maze = RandomMaze(4, wrap = false, 20, 20, 0.5)
+  val canvas = new Canvas(1200, 800)
   val gc: GraphicsContext = canvas.graphicsContext2D
   val renderer = new Renderer2D(gc, 20)
 
   val currentLevel = new Level(maze)
-  var player1 = new Player(20, 20, currentLevel)
+  var player1 = new Player(22, 22, currentLevel)
   currentLevel += player1
 
   stage = new JFXApp.PrimaryStage {
     title = "StarMesh"
-    scene = new Scene(800, 800) {
+    scene = new Scene(1200, 800) {
       fill = Color.Azure
       content += canvas
+
+      var lastTime: Long = -1L
+      val timer: AnimationTimer = AnimationTimer(time => {
+        if (lastTime >= 0) {
+          val dt = (time - lastTime) / 1e9
+          currentLevel.updateAll(dt)
+          renderer.render(currentLevel, player1.x, player1.y)
+        }
+        lastTime = time
+      })
+      timer.start()
+
 
       onKeyPressed = (ke: KeyEvent) => {
         ke.code match {
@@ -44,17 +56,6 @@ object Main extends JFXApp {
           case _ =>
         }
       }
-
-      var lastTime: Long = -1L
-      val timer: AnimationTimer = AnimationTimer(time => {
-        if (lastTime >= 0) {
-          val dt = (time - lastTime) / 1e9
-          currentLevel.updateAll(dt)
-          renderer.render(currentLevel, 20, 20)
-        }
-        lastTime = time
-      })
-      timer.start()
 
     }
 
