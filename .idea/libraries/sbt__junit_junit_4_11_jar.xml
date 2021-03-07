@@ -2,12 +2,16 @@
   <library name="sbt: junit:junit:4.11:jar">
     <CLASSES>
       <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/junit/junit/4.11/junit-4.11.jar!/" />
+      <root url="file://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/junit/junit/4.11" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/junit/junit/4.11/junit-4.11-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/junit/junit/4.11/junit-4.11-sources.jar!/" />
+      <root url="file://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/junit/junit/4.11" />
     </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/junit/junit/4.11" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/AppData/Local/Coursier/cache/v1/https/repo1.maven.org/maven2/junit/junit/4.11" recursive="false" type="SOURCES" />
   </library>
 </component>

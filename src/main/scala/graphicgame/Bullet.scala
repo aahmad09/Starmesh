@@ -2,9 +2,7 @@ package graphicgame
 
 class Bullet(private var _x: Double, private var _y: Double,
              val level: Level,
-             private val dir: Int) extends Entity {
-
-  val speed: Int = 8
+             val dir: Int, val speed: Int ) extends Entity {
 
   def update(dt: Double): Unit = {
     dir match {

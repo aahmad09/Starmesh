@@ -25,7 +25,7 @@ class Player(private var _x: Double, private var _y: Double,
       move(0, -(speed * dt)); bulletDir = 3
     }
     if (fireHeld && bulletReloadTimer > 1.0) {
-      level += new Bullet(_x, _y, level, bulletDir)
+      level += new Bullet(_x, _y, level, bulletDir,8)
       bulletReloadTimer = 0
     }
   }

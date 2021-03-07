@@ -26,7 +26,7 @@ class Enemy(private var _x: Double, private var _y: Double,
     }
 
     if (r.nextInt(200) == 5) {
-      level += new Bullet(_x, _y, level, r.nextInt(4))
+      level += new Bullet(_x, _y, level, r.nextInt(4), 6)
     }
   }
 
