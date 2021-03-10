@@ -17,9 +17,9 @@ class Bullet(private var _x: Double, private var _y: Double,
     }
   }
 
-  def width: Double = 1
+  def width: Double = 0.4
 
-  def height: Double = 1
+  def height: Double = 0.4
 
   def stillHere(): Boolean = dead
 

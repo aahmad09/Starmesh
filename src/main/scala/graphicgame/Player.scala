@@ -35,9 +35,9 @@ class Player(private var _x: Double, private var _y: Double,
   }
 
 
-  override def width = 2.5
+  override def width = 1
 
-  override def height = 2.5
+  override def height = 1
 
   def stillHere(): Boolean = dead
 

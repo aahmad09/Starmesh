@@ -4,61 +4,34 @@ import scala.util.Random
 
 class Enemy(private var _x: Double, private var _y: Double,
             val level: Level,
-            private var dead: Boolean,
-            private var dir: Int) extends Entity {
+            private var dead: Boolean) extends Entity {
 
-  val speed = 0.5
-
+  val speed = 3
   val r: Random.type = scala.util.Random
-  dir = r.nextInt(4)
-
 
   def update(dt: Double): Unit = {
-    // manhattan distance
-    if (((_x - level.players.head.x) < 10) && (_y - level.players.head.y) < 10) {
-      val offset: Option[List[(Double, Double)]] = level.shortestPath(_x, _y, level.players.head.x,
-        level.players.head.y, width, height, this)
-      offset match {
-        case Some(dirs: List[(Double, Double)]) => for ((px,py) <- dirs.reverse) {
-          if (px.toInt > _x) move(speed * dt, 0)
-          if (px.toInt < _x) move(-(speed * dt), 0)
-          if (py.toInt > _y) move(0, speed * dt)
-          if (py.toInt < _y) move(0, -(speed * dt))
-        }
-        case None => None
-      }
 
-    }
-
-    def move(dx: Double, dy: Double): Unit = {
-      if (level.maze.isClear(_x + dx, _y + dy, width, height, this)) {
-        _x += dx
-        _y += dy
+    if ((this.x - level.players.head.x) < 20 && (this.y - level.players.head.y) < 20) {
+      Array(3 -> level.shortestPath(_x, _y - 1, level.players.head.x, level.players.head.y, width, height, this),
+        2 -> level.shortestPath(_x, _y + 1, level.players.head.x, level.players.head.y, width, height, this),
+        0 -> level.shortestPath(_x + 1, _y, level.players.head.x, level.players.head.y, width, height, this),
+        1 -> level.shortestPath(_x - 1, _y, level.players.head.x, level.players.head.y, width, height, this)).minBy(_._2)._1
+      match {
+        case 0 => if (level.maze.isClear(_x + speed * dt, _y, this.width, this.height, this)) _x += speed * dt
+        case 1 => if (level.maze.isClear(_x - speed * dt, _y, this.width, this.height, this)) _x -= speed * dt
+        case 2 => if (level.maze.isClear(_x, _y + speed * dt, this.width, this.height, this)) _y += speed * dt
+        case 3 => if (level.maze.isClear(_x, _y - speed * dt, this.width, this.height, this)) _y -= speed * dt
       }
     }
 
 
+    if (r.nextInt(200) == 5) level += new Bullet(_x, _y, level, r.nextInt(4), 6, true)
 
-
-    //    offset match {
-    //      case Some(dirs: List[(Double,Double)]) =>  for (i <- dirs.reverse.indices) {
-    //        if ((dirs(i)._1 - _x) <= 1 && (dirs(i)._2 - _y) <= 0) _x += speed * dt
-    //        if ((dirs(i)._1 - _x) <= -1 && (dirs(i)._2 - _y) <= 0) _x -= speed * dt
-    //        if ((dirs(i)._1 - _x) <= 0 && (dirs(i)._2 - _y) <= 1) _y += speed * dt
-    //        if ((dirs(i)._1 - _x) <= 0 && (dirs(i)._2 - _y) <= -1) _y -= speed * dt
-    //      }
-    //      case None => None
-    //    }
-    //
-
-    if (r.nextInt(200) == 5) {
-      level += new Bullet(_x, _y, level, r.nextInt(4), 6, true)
-    }
   }
 
-  override def width: Double = 3.0
+  override def width: Double = 1.0
 
-  override def height: Double = 3.0
+  override def height: Double = 1.0
 
   def stillHere(): Boolean = dead
 
