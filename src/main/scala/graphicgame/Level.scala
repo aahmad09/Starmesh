@@ -43,20 +43,20 @@ class Level(val maze: Maze) {
     solution
   }
 
-  def closestEnemy(xPos: Double, yPos: Double): Enemy = {
-    val distList: List[(Double, Enemy)] = Nil
-    var min = 100000.0
-    var ret: Enemy = new Enemy(0, 0, this, false, 1)
-    enemies.foreach {
-      e => (math.sqrt((e.x - xPos) * (e.x - xPos) + (e.y - yPos) * (e.y - yPos)), e) :: distList
-    }
-
-    for (x <- distList) if (x._1 < min) {
-      min = x._1
-      ret = x._2
-    }
-    ret
-  }
+//  def closestEnemy(xPos: Double, yPos: Double): Enemy = {
+//    val distList: List[(Double, Enemy)] = Nil
+//    var min = 100000.0
+//    var ret: Enemy = new Enemy(0, 0, this, false, 1)
+//    enemies.foreach {
+//      e => (math.sqrt((e.x - xPos) * (e.x - xPos) + (e.y - yPos) * (e.y - yPos)), e) :: distList
+//    }
+//
+//    for (x <- distList) if (x._1 < min) {
+//      min = x._1
+//      ret = x._2
+//    }
+//    ret
+//  }
 
   def enemies: Seq[Enemy] = _entities.collect { case e: Enemy => e }
 

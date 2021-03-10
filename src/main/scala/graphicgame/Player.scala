@@ -13,19 +13,19 @@ class Player(private var _x: Double, private var _y: Double,
     bulletReloadTimer += dt
 
     if (leftHeld) {
-      move(-(speed * dt), 0);
+      move(-(speed * dt), 0)
       bulletDir = 1
     }
     if (rightHeld) {
-      move(speed * dt, 0);
+      move(speed * dt, 0)
       bulletDir = 0
     }
     if (downHeld) {
-      move(0, speed * dt);
+      move(0, speed * dt)
       bulletDir = 2
     }
     if (upHeld) {
-      move(0, -(speed * dt));
+      move(0, -(speed * dt))
       bulletDir = 3
     }
     if (fireHeld && bulletReloadTimer > 1.0) {
