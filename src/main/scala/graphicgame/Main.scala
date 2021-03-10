@@ -43,7 +43,10 @@ object Main extends JFXApp {
           case KeyCode.Right => player1.rightPressed()
           case KeyCode.Up => player1.upPressed()
           case KeyCode.Down => player1.downPressed()
-          case KeyCode.Space => player1.fireUpPressed()
+          case KeyCode.W => player1.fireUpPressed()
+          case KeyCode.A => player1.fireLeftPressed()
+          case KeyCode.S => player1.fireDownPressed()
+          case KeyCode.D => player1.fireRightPressed()
           case _ =>
         }
       }
@@ -54,7 +57,10 @@ object Main extends JFXApp {
           case KeyCode.Right => player1.rightReleased()
           case KeyCode.Up => player1.upReleased()
           case KeyCode.Down => player1.downReleased()
-          case KeyCode.Space => player1.fireUpReleased()
+          case KeyCode.W => player1.fireUpReleased()
+          case KeyCode.A => player1.fireLeftReleased()
+          case KeyCode.S => player1.fireDownReleased()
+          case KeyCode.D => player1.fireRightReleased()
           case _ =>
         }
       }

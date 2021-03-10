@@ -8,7 +8,7 @@ class Level(val maze: Maze) {
   val offsets: Array[(Int, Int)] = Array((1, 0), (-1, 0), (0, 1), (0, -1))
 
   val r: Random.type = scala.util.Random
-  private var enemyCount = 10 //TODO: change to 20
+  private var enemyCount = 20
   private var _entities: Seq[Entity] = Nil
   while (enemyCount != 0) {
     val x = r.nextInt(100)
@@ -72,6 +72,8 @@ class Level(val maze: Maze) {
 
   def updateAll(delay: Double): Unit = {
     _entities.foreach(_.update(delay))
+    _entities = _entities.filterNot(_.stillHere())
+
   }
 
   def players: Seq[Player] = _entities.collect { case p: Player => p }

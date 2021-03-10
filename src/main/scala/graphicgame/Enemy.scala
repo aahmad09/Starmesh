@@ -19,11 +19,11 @@ class Enemy(private var _x: Double, private var _y: Double,
       val offset: Option[List[(Double, Double)]] = level.shortestPath(_x, _y, level.players.head.x,
         level.players.head.y, width, height, this)
       offset match {
-        case Some(dirs: List[(Double, Double)]) => for (i <- dirs.reverse.indices) {
-          if (dirs(i)._1.toInt > _x) move(speed * dt, 0)
-          if (dirs(i)._1.toInt < _x) move(-(speed * dt), 0)
-          if (dirs(i)._2.toInt > _y) move(0, speed * dt)
-          if (dirs(i)._2.toInt < _y) move(0, -(speed * dt))
+        case Some(dirs: List[(Double, Double)]) => for ((px,py) <- dirs.reverse) {
+          if (px.toInt > _x) move(speed * dt, 0)
+          if (px.toInt < _x) move(-(speed * dt), 0)
+          if (py.toInt > _y) move(0, speed * dt)
+          if (py.toInt < _y) move(0, -(speed * dt))
         }
         case None => None
       }
@@ -52,7 +52,7 @@ class Enemy(private var _x: Double, private var _y: Double,
     //
 
     if (r.nextInt(200) == 5) {
-      level += new Bullet(_x, _y, level, r.nextInt(4), 6)
+      level += new Bullet(_x, _y, level, r.nextInt(4), 6, true)
     }
   }
 
@@ -60,7 +60,7 @@ class Enemy(private var _x: Double, private var _y: Double,
 
   override def height: Double = 3.0
 
-  def stillHere(): Boolean = true
+  def stillHere(): Boolean = dead
 
   def postCheck(): Unit = ???
 
