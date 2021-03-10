@@ -3,7 +3,7 @@ package graphicgame
 class Player(private var _x: Double, private var _y: Double,
              val level: Level) extends Entity {
 
-  val speed = 3
+  val speed = 10 //TODO: change to 3
   private var upHeld, downHeld, leftHeld, rightHeld, fireHeld = false
 
   private var bulletReloadTimer: Double = 0
@@ -13,19 +13,23 @@ class Player(private var _x: Double, private var _y: Double,
     bulletReloadTimer += dt
 
     if (leftHeld) {
-      move(-(speed * dt), 0); bulletDir = 1
+      move(-(speed * dt), 0);
+      bulletDir = 1
     }
     if (rightHeld) {
-      move(speed * dt, 0); bulletDir = 0
+      move(speed * dt, 0);
+      bulletDir = 0
     }
     if (downHeld) {
-      move(0, speed * dt); bulletDir = 2
+      move(0, speed * dt);
+      bulletDir = 2
     }
     if (upHeld) {
-      move(0, -(speed * dt)); bulletDir = 3
+      move(0, -(speed * dt));
+      bulletDir = 3
     }
     if (fireHeld && bulletReloadTimer > 1.0) {
-      level += new Bullet(_x, _y, level, bulletDir,8)
+      level += new Bullet(_x, _y, level, bulletDir, 8)
       bulletReloadTimer = 0
     }
   }
@@ -36,6 +40,7 @@ class Player(private var _x: Double, private var _y: Double,
       _y += dy
     }
   }
+
 
   override def width = 2.5
 

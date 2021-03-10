@@ -13,7 +13,7 @@ class Renderer2D(gc: GraphicsContext, blockSize: Double) {
   private val wallImage = Renderer2D.loadImage("/images/wall.png")
   private val playerImage = Renderer2D.loadImage("/images/player.png")
   private val enemyImage = Renderer2D.loadImage("/images/enemy.png")
-//  private val generatorImage = Renderer2D.loadImage("/images/generator.png")
+  //  private val generatorImage = Renderer2D.loadImage("/images/generator.png")
   private val bulletImage = Renderer2D.loadImage("/images/bullet.png")
   private var lastCenterX = 0.0
   private var lastCenterY = 0.0
