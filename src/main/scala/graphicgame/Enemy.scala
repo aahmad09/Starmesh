@@ -7,7 +7,7 @@ class Enemy(private var _x: Double, private var _y: Double,
             private var dead: Boolean,
             private var dir: Int) extends Entity {
 
-  val speed = 0.5 //TODO: change to 4
+  val speed = 0.5
 
   val r: Random.type = scala.util.Random
   dir = r.nextInt(4)
@@ -20,10 +20,10 @@ class Enemy(private var _x: Double, private var _y: Double,
         level.players.head.y, width, height, this)
       offset match {
         case Some(dirs: List[(Double, Double)]) => for (i <- dirs.reverse.indices) {
-          if (dirs(i)._1 > _x) move(speed * dt, 0)
-          if (dirs(i)._1 < _x) move(-(speed * dt), 0)
-          if (dirs(i)._2 > _y) move(0, speed * dt)
-          if (dirs(i)._2 < _y) move(0, -(speed * dt))
+          if (dirs(i)._1.toInt > _x) move(speed * dt, 0)
+          if (dirs(i)._1.toInt < _x) move(-(speed * dt), 0)
+          if (dirs(i)._2.toInt > _y) move(0, speed * dt)
+          if (dirs(i)._2.toInt < _y) move(0, -(speed * dt))
         }
         case None => None
       }
