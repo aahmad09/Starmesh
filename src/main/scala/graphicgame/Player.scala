@@ -23,9 +23,7 @@ class Player(private var _x: Double, private var _y: Double,
       if (fireUp) level += new Bullet(_x, _y, level, 3, 8, false); bulletReloadTimer = 0
       if (fireDown) level += new Bullet(_x, _y, level, 2, 8, false); bulletReloadTimer = 0
     }
-
   }
-
 
   def move(dx: Double, dy: Double): Unit = {
     if (level.maze.isClear(_x + dx, _y + dy, width, height, this)) {

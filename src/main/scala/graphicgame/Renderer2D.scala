@@ -15,6 +15,7 @@ class Renderer2D(gc: GraphicsContext, blockSize: Double) {
   private val enemyImage = Renderer2D.loadImage("/images/enemy.png")
   //  private val generatorImage = Renderer2D.loadImage("/images/generator.png")
   private val bulletImage = Renderer2D.loadImage("/images/bullet.png")
+  private val goalImage = Renderer2D.loadImage("/images/goal.png")
   private var lastCenterX = 0.0
   private var lastCenterY = 0.0
 
@@ -50,6 +51,7 @@ class Renderer2D(gc: GraphicsContext, blockSize: Double) {
         case p: Player => playerImage
         case e: Enemy => enemyImage
         case b: Bullet => bulletImage
+        case g: Goal => goalImage
         //        case g: Generator => generatorImage
       }
       if (level.maze.wrap) {

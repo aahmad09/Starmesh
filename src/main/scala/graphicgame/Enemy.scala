@@ -11,7 +11,7 @@ class Enemy(private var _x: Double, private var _y: Double,
 
   def update(dt: Double): Unit = {
 
-    if ((_x - level.players.head.x).abs < 15 && (_y - level.players.head.y).abs < 15) {
+    if ((_x - level.players.head.x).abs < 13 && (_y - level.players.head.y).abs < 13) {
       Array(3 -> level.shortestPath(_x, _y - 1.0, level.players.head.x, level.players.head.y, width, height, this),
         2 -> level.shortestPath(_x, _y + 1.0, level.players.head.x, level.players.head.y, width, height, this),
         0 -> level.shortestPath(_x + 1.0, _y, level.players.head.x, level.players.head.y, width, height, this),

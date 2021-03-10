@@ -19,6 +19,7 @@ class Level(val maze: Maze) {
       enemyCount -= 1
     }
   }
+  this += new Goal(38,38, this, false)
 
   def shortestPath(sx: Double, sy: Double, ex: Double, ey: Double,
                    width: Double, height: Double, e: Entity): Int = {
@@ -59,7 +60,9 @@ class Level(val maze: Maze) {
 
   def enemies: Seq[Enemy] = _entities.collect { case e: Enemy => e }
 
-  def bullets: Seq[Bullet] = _entities.collect { case e: Bullet => e }
+  def bullets: Seq[Bullet] = _entities.collect { case b: Bullet => b }
+
+  def goals: Seq[Goal] = _entities.collect {case g: Goal => g}
 
 
 }
