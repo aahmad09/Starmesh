@@ -10,7 +10,7 @@ import scalafx.scene.paint.Color
 
 object Main extends JFXApp {
 
-  val maze: Maze = RandomMaze(8, wrap = false, 20, 20, 0.5)
+  val maze: Maze = RandomMaze(4, wrap = false, 20, 20, 0.7)
   val canvas = new Canvas(1200, 800)
   val gc: GraphicsContext = canvas.graphicsContext2D
   val renderer = new Renderer2D(gc, 20)

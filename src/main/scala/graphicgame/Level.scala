@@ -8,7 +8,7 @@ class Level(val maze: Maze) {
   val offsets: Array[(Int, Int)] = Array((1, 0), (-1, 0), (0, 1), (0, -1))
 
   val r: Random.type = scala.util.Random
-  private var enemyCount = 10
+  private var enemyCount = 50
   private var _entities: Seq[Entity] = Nil
   while (enemyCount != 0) {
     val x = r.nextInt(100)
@@ -24,7 +24,9 @@ class Level(val maze: Maze) {
                    width: Double, height: Double, e: Entity): Int = {
     val queue = new ArrayQueue[(Double, Double, Int)]()
     var visited = mutable.Set[(Double, Double)](sx -> sy)
-    queue.enqueue((sx, sy, 0))
+    if (maze.isClear(sx,sy,width,height,e)) {
+      queue.enqueue((sx, sy, 0))
+    }
     visited += sx -> sy
     while (!queue.isEmpty) {
       val (x, y, steps) = queue.dequeue()

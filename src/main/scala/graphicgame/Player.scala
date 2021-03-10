@@ -3,7 +3,7 @@ package graphicgame
 class Player(private var _x: Double, private var _y: Double,
              val level: Level) extends Entity {
 
-  val speed = 4
+  val speed = 5
   private var dead: Boolean = false
   private var upHeld, downHeld, leftHeld, rightHeld, fireUp, fireDown, fireRight, fireLeft = false
 

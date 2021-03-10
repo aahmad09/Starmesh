@@ -11,22 +11,27 @@ class Enemy(private var _x: Double, private var _y: Double,
 
   def update(dt: Double): Unit = {
 
-    if ((this.x - level.players.head.x) < 20 && (this.y - level.players.head.y) < 20) {
-      Array(3 -> level.shortestPath(_x, _y - 1, level.players.head.x, level.players.head.y, width, height, this),
-        2 -> level.shortestPath(_x, _y + 1, level.players.head.x, level.players.head.y, width, height, this),
-        0 -> level.shortestPath(_x + 1, _y, level.players.head.x, level.players.head.y, width, height, this),
-        1 -> level.shortestPath(_x - 1, _y, level.players.head.x, level.players.head.y, width, height, this)).minBy(_._2)._1
+    if ((_x - level.players.head.x).abs < 15 && (_y - level.players.head.y).abs < 15) {
+      Array(3 -> level.shortestPath(_x, _y - 1.0, level.players.head.x, level.players.head.y, width, height, this),
+        2 -> level.shortestPath(_x, _y + 1.0, level.players.head.x, level.players.head.y, width, height, this),
+        0 -> level.shortestPath(_x + 1.0, _y, level.players.head.x, level.players.head.y, width, height, this),
+        1 -> level.shortestPath(_x - 1.0, _y, level.players.head.x, level.players.head.y, width, height, this)).minBy(_._2)._1
       match {
-        case 0 => if (level.maze.isClear(_x + speed * dt, _y, this.width, this.height, this)) _x += speed * dt
-        case 1 => if (level.maze.isClear(_x - speed * dt, _y, this.width, this.height, this)) _x -= speed * dt
-        case 2 => if (level.maze.isClear(_x, _y + speed * dt, this.width, this.height, this)) _y += speed * dt
-        case 3 => if (level.maze.isClear(_x, _y - speed * dt, this.width, this.height, this)) _y -= speed * dt
+        case 0 => move(speed * dt, 0)
+        case 1 => move(-speed * dt, 0)
+        case 2 => move(0, speed * dt)
+        case 3 => move(0, -speed * dt)
       }
+      if (r.nextInt(200) == 5) level += new Bullet(_x, _y, level, r.nextInt(4), 6, false)
     }
 
+  }
 
-    if (r.nextInt(200) == 5) level += new Bullet(_x, _y, level, r.nextInt(4), 6, true)
-
+  def move(dx: Double, dy: Double): Unit = {
+    if (level.maze.isClear(_x + dx, _y + dy, width, height, this)) {
+      _x += dx
+      _y += dy
+    }
   }
 
   override def width: Double = 1.0
