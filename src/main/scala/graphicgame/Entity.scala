@@ -12,8 +12,8 @@ trait Entity extends Serializable {
 
   def update(dt: Double): Unit
 
-  def postCheck(): Unit // You can delete this if you don't use it.
-  def stillHere(): Boolean // remove entities from the level.
+  def postCheck(): Unit // post check to check intersections
+  def isRemoved(): Boolean // remove entities from the level.
 }
 
 object Entity {

@@ -18,10 +18,14 @@ class Player(private var _x: Double, private var _y: Double,
     if (upHeld) move(0, -(speed * dt))
 
     if (bulletReloadTimer > 0.6) {
-      if (fireLeft) level += new Bullet(_x, _y, level, 1, 8, false); bulletReloadTimer = 0
-      if (fireRight) level += new Bullet(_x, _y, level, 0, 8, false); bulletReloadTimer = 0
-      if (fireUp) level += new Bullet(_x, _y, level, 3, 8, false); bulletReloadTimer = 0
-      if (fireDown) level += new Bullet(_x, _y, level, 2, 8, false); bulletReloadTimer = 0
+      if (fireLeft) level += new Bullet(_x, _y, level, 1, 8, false)
+      bulletReloadTimer = 0
+      if (fireRight) level += new Bullet(_x, _y, level, 0, 8, false)
+      bulletReloadTimer = 0
+      if (fireUp) level += new Bullet(_x, _y, level, 3, 8, false)
+      bulletReloadTimer = 0
+      if (fireDown) level += new Bullet(_x, _y, level, 2, 8, false)
+      bulletReloadTimer = 0
     }
   }
 
@@ -37,9 +41,9 @@ class Player(private var _x: Double, private var _y: Double,
 
   override def height = 1
 
-  def stillHere(): Boolean = dead
+  def isRemoved(): Boolean = dead
 
-  def postCheck(): Unit = ???
+  def postCheck(): Unit = None
 
   def x: Double = _x
 

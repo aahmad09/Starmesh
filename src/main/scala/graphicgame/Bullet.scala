@@ -21,9 +21,9 @@ class Bullet(private var _x: Double, private var _y: Double,
 
   def height: Double = 0.4
 
-  def stillHere(): Boolean = dead
+  def isRemoved(): Boolean = dead
 
-  def postCheck(): Unit = ???
+  def postCheck(): Unit = None
 
   def x: Double = _x
 

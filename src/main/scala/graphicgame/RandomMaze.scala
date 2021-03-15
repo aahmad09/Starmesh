@@ -63,6 +63,7 @@ class RandomMaze private(val cellSize: Int, val wrap: Boolean, wallsInput: Array
    */
   def height: Int = walls.length * cellSize
 
+
   private def getWall(r: Int, c: Int): Int = {
     if (wrap) {
       walls((r + walls.length) % walls.length)((c + walls(0).length) % walls(0).length)
@@ -76,17 +77,6 @@ object RandomMaze {
   private val HorizontalWall = 1
   private val VerticalWall = 2
   private val offsets = Array(0 -> -1, 1 -> 0, 0 -> 1, -1 -> 0)
-
-  //
-  //  def main(args: Array[String]): Unit = {
-  //    val maze = RandomMaze(3, wrap = false, 20, 20, 0.6)
-  //    for (r <- -5 until maze.height + 5) {
-  //      for (c <- -5 until maze.width + 5) {
-  //        if (maze(r, c) == Wall) print('#') else print(' ')
-  //      }
-  //      println()
-  //    }
-  //  }
 
   /**
    * This method builds a maze. It starts by making a minimum spanning tree, then it removes additional walls at random based on

@@ -4,7 +4,7 @@ import scala.util.Random
 
 class Enemy(private var _x: Double, private var _y: Double,
             val level: Level,
-            private var dead: Boolean) extends Entity {
+            private var _dead: Boolean) extends Entity {
 
   val speed = 3
   val r: Random.type = scala.util.Random
@@ -38,9 +38,9 @@ class Enemy(private var _x: Double, private var _y: Double,
 
   override def height: Double = 1.0
 
-  def stillHere(): Boolean = dead
+  def isRemoved(): Boolean = _dead
 
-  def postCheck(): Unit = ???
+  def postCheck(): Unit = None
 
   def x: Double = _x
 
