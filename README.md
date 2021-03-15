@@ -1,6 +1,6 @@
 # Starmesh
 
-Starmesh is a minimalistic top-down maze game based on ScalaFX.
+Starmesh is a minimalistic top-down maze game based in ScalaFX.
 
 ## Installation
 
