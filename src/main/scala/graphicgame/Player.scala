@@ -4,50 +4,64 @@ class Player(private var _x: Double, private var _y: Double,
              val level: Level) extends Entity {
 
   val speed = 5
+  val reloadTimeConstant = 0.5
   private var dead: Boolean = false
   private var upHeld, downHeld, leftHeld, rightHeld, fireUp, fireDown, fireRight, fireLeft = false
-
-  private var bulletReloadTimer: Double = 0
+  private var bulletReloadTimer = reloadTimeConstant
 
   def update(dt: Double): Unit = {
-    bulletReloadTimer += dt
 
     if (leftHeld) move(-(speed * dt), 0)
     if (rightHeld) move(speed * dt, 0)
     if (downHeld) move(0, speed * dt)
     if (upHeld) move(0, -(speed * dt))
 
-    if (bulletReloadTimer > 0.6) {
-      if (fireLeft) level += new Bullet(_x, _y, level, 1, 8, false)
-      bulletReloadTimer = 0
-      if (fireRight) level += new Bullet(_x, _y, level, 0, 8, false)
-      bulletReloadTimer = 0
-      if (fireUp) level += new Bullet(_x, _y, level, 3, 8, false)
-      bulletReloadTimer = 0
-      if (fireDown) level += new Bullet(_x, _y, level, 2, 8, false)
-      bulletReloadTimer = 0
+    if (bulletReloadTimer <= 0) {
+      shootBullet()
+      bulletReloadTimer = reloadTimeConstant
+    } else {
+      bulletReloadTimer -= dt
     }
+
+    level.enemyBullets.foreach { x =>
+      if (Entity.intersect(this, x)) {
+        dead = true
+      }
+    }
+
+    level.enemies.foreach { x =>
+      if (Entity.intersect(this, x)) {
+        dead = true
+      }
+    }
+
   }
 
   def move(dx: Double, dy: Double): Unit = {
-    if (level.maze.isClear(_x + dx, _y + dy, width, height, this)) {
+    if (level.maze.isClear(x + dx, y + dy, width, height, this)) {
       _x += dx
       _y += dy
     }
   }
 
+  def width = 1
 
-  override def width = 1
-
-  override def height = 1
-
-  def isRemoved(): Boolean = dead
-
-  def postCheck(): Unit = None
+  def height = 1
 
   def x: Double = _x
 
   def y: Double = _y
+
+  def shootBullet(): Unit = {
+    if (fireLeft) level += new Bullet(x, y, level, 1, 8, false, true)
+    if (fireRight) level += new Bullet(x, y, level, 0, 8, false, true)
+    if (fireUp) level += new Bullet(x, y, level, 3, 8, false, true)
+    if (fireDown) level += new Bullet(x, y, level, 2, 8, false, true)
+  }
+
+  def isRemoved(): Boolean = dead
+
+  def postCheck(): Unit = None
 
   def upPressed(): Unit = upHeld = true
 

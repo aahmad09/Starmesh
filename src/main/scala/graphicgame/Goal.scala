@@ -5,12 +5,17 @@ class Goal(private var _x: Double, private var _y: Double,
            private var picked: Boolean) extends Entity {
 
   def update(dt: Double): Unit = {
-    if (Entity.intersect(this, level.players.head)) picked = true
+    val targetList: Seq[Option[Player]] = for (e <- level.players) yield Option(e)
+    targetList.foreach {
+      case None =>
+      case Some(tgt) =>
+        if (Entity.intersect(this, tgt)) picked = true
+    }
   }
 
-  def width: Double = 2
+  def width: Double = 1
 
-  def height: Double = 2
+  def height: Double = 1
 
   def isRemoved(): Boolean = picked
 

@@ -5,18 +5,6 @@ import scala.collection.mutable
 class Level(val maze: Maze,
             private var _entities: List[Entity]) {
 
-  //  val r: Random.type = scala.util.Random
-  //  private var enemyCount = 50
-  //  private var _entities: Seq[Entity] = Nil
-  //  while (enemyCount != 0) {
-  //    val x = r.nextInt(100)
-  //    val y = r.nextInt(100)
-  //    val tempEnemy = new Enemy(x, y, this, false)
-  //    if (this.maze.isClear(tempEnemy.x, tempEnemy.y, tempEnemy.width, tempEnemy.height, tempEnemy)) {
-  //      this += tempEnemy
-  //      enemyCount -= 1
-  //    }
-  //  }
   def shortestPath(sx: Double, sy: Double, ex: Double, ey: Double,
                    width: Double, height: Double, e: Entity): Int = {
     val offsets: Array[(Int, Int)] = Array((1, 0), (-1, 0), (0, 1), (0, -1))
@@ -52,11 +40,15 @@ class Level(val maze: Maze,
     _entities = _entities.filterNot(_.isRemoved())
   }
 
+  def distanceFrom(x: Double, y: Double, e: Entity): Double = math.abs(x - e.x) + math.abs(y - e.y)
+
   def players: Seq[Player] = _entities.collect { case p: Player => p }
 
   def enemies: Seq[Enemy] = _entities.collect { case e: Enemy => e }
 
-  def bullets: Seq[Bullet] = _entities.collect { case b: Bullet => b }
+  def playerBullets: Seq[Bullet] = _entities.collect { case b: Bullet => b }.filter(_.isPlayerGenerated)
+
+  def enemyBullets: Seq[Bullet] = _entities.collect { case b: Bullet => b }.filter(!_.isPlayerGenerated)
 
   def goals: Seq[Goal] = _entities.collect { case g: Goal => g }
 

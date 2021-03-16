@@ -16,11 +16,17 @@ object Main extends JFXApp {
   val renderer = new Renderer2D(gc, 20)
 
   val currentLevel = new Level(maze, List())
-  val generator = new Generator(34, 34, currentLevel)
   var player1 = new Player(22, 22, currentLevel)
   currentLevel += player1
+
+  val gen1 = new Generator(34, 34, currentLevel)
   currentLevel += new Goal(38, 38, currentLevel, false)
-  currentLevel += generator
+  currentLevel += gen1
+
+  val gen2 = new Generator(68, 68, currentLevel)
+  currentLevel += gen2
+  currentLevel += new Goal(64, 64, currentLevel, false)
+
 
   stage = new JFXApp.PrimaryStage {
     title = "StarMesh"

@@ -20,4 +20,6 @@ object Entity {
   def intersect(e1: Entity, e2: Entity): Boolean = {
     ((e1.x - e2.x).abs < (e1.width + e2.width) / 2) && ((e1.y - e2.y).abs < (e1.height + e2.height) / 2)
   }
+
+
 }
