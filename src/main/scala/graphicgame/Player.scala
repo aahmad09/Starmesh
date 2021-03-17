@@ -4,7 +4,7 @@ class Player(private var _x: Double, private var _y: Double,
              val level: Level) extends Entity {
 
   val speed = 5
-  val reloadTimeConstant = 0.5
+  val reloadTimeConstant: Double = 1.5
   private var dead: Boolean = false
   private var upHeld, downHeld, leftHeld, rightHeld, fireUp, fireDown, fireRight, fireLeft = false
   private var bulletReloadTimer = reloadTimeConstant
@@ -23,7 +23,7 @@ class Player(private var _x: Double, private var _y: Double,
       bulletReloadTimer -= dt
     }
 
-    level.enemyBullets.foreach { x =>
+    level.enemyProjectiles.foreach { x =>
       if (Entity.intersect(this, x)) {
         dead = true
       }
@@ -35,6 +35,7 @@ class Player(private var _x: Double, private var _y: Double,
       }
     }
 
+    isGameOver()
   }
 
   def move(dx: Double, dy: Double): Unit = {
@@ -53,11 +54,13 @@ class Player(private var _x: Double, private var _y: Double,
   def y: Double = _y
 
   def shootBullet(): Unit = {
-    if (fireLeft) level += new Bullet(x, y, level, 1, 8, false, true)
-    if (fireRight) level += new Bullet(x, y, level, 0, 8, false, true)
-    if (fireUp) level += new Bullet(x, y, level, 3, 8, false, true)
-    if (fireDown) level += new Bullet(x, y, level, 2, 8, false, true)
+    if (fireLeft) level += new Projectile(x, y, level, 1, 8, false, true)
+    if (fireRight) level += new Projectile(x, y, level, 0, 8, false, true)
+    if (fireUp) level += new Projectile(x, y, level, 3, 8, false, true)
+    if (fireDown) level += new Projectile(x, y, level, 2, 8, false, true)
   }
+
+  def isGameOver(): Unit = if (dead) println("Game Over!")
 
   def isRemoved(): Boolean = dead
 

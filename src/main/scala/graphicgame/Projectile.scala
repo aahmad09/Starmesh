@@ -1,12 +1,14 @@
 package graphicgame
 
-class Bullet(private var _x: Double, private var _y: Double,
-             val level: Level,
-             val dir: Int, val speed: Int, private var dead: Boolean, private val playerGenerated: Boolean) extends Entity {
+class Projectile(private var _x: Double, private var _y: Double,
+                 val level: Level,
+                 val dir: Int, val speed: Int, private var dead: Boolean, private val playerGenerated: Boolean) extends Entity {
 
   def update(dt: Double): Unit = {
     val playerTargetList: Seq[Option[Player]] = for (e <- level.players) yield Option(e)
     val enemyTargetList: Seq[Option[Enemy]] = for (e <- level.enemies) yield Option(e)
+    val towersList: Seq[Option[Tower]] = for (e <- level.towers) yield Option(e)
+    val enemyProjectilesList: Seq[Option[Projectile]] = for (e <- level.enemyProjectiles) yield Option(e)
 
     // 0 -> right, 1 -> left, 2 -> down, 3 -> up
     dir match {
@@ -35,6 +37,23 @@ class Bullet(private var _x: Double, private var _y: Double,
           if (Entity.intersect(this, tgt)) dead = true
       }
     }
+
+    if (isPlayerGenerated) {
+      towersList.foreach {
+        case None =>
+        case Some(tgt) =>
+          if (Entity.intersect(this, tgt)) dead = true
+      }
+    }
+
+    if (isPlayerGenerated) {
+      enemyProjectilesList.foreach {
+        case None =>
+        case Some(tgt) =>
+          if (Entity.intersect(this, tgt)) dead = true
+      }
+    }
+
 
   }
 

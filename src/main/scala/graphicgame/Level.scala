@@ -46,11 +46,15 @@ class Level(val maze: Maze,
 
   def enemies: Seq[Enemy] = _entities.collect { case e: Enemy => e }
 
-  def playerBullets: Seq[Bullet] = _entities.collect { case b: Bullet => b }.filter(_.isPlayerGenerated)
+  def playerProjectiles: Seq[Projectile] = _entities.collect { case b: Projectile => b }.filter(_.isPlayerGenerated)
 
-  def enemyBullets: Seq[Bullet] = _entities.collect { case b: Bullet => b }.filter(!_.isPlayerGenerated)
+  def enemyProjectiles: Seq[Projectile] = _entities.collect { case b: Projectile => b }.filter(!_.isPlayerGenerated)
 
-  def goals: Seq[Goal] = _entities.collect { case g: Goal => g }
+  def allProjectiles: Seq[Projectile] = _entities.collect { case b: Projectile => b }
+
+  def towers: Seq[Tower] = _entities.collect { case t: Tower => t }
+
+  def generators: Seq[Generator] = _entities.collect { case g: Generator => g }
 
 
 }

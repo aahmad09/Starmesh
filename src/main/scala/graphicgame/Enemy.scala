@@ -38,7 +38,7 @@ class Enemy(private var _x: Double, private var _y: Double,
         }
     }
 
-    level.playerBullets.foreach { x =>
+    level.playerProjectiles.foreach { x =>
       if (Entity.intersect(this, x)) {
         dead = true
       }
@@ -53,17 +53,15 @@ class Enemy(private var _x: Double, private var _y: Double,
     }
   }
 
-  def x: Double = _x
-
   def y: Double = _y
 
   def width: Double = 1.0
 
   def height: Double = 1.0
 
-  def shootBullet(): Unit = {
-    level += new Bullet(x, y, level, Random.nextInt(4), 8, false, false)
-  }
+  def shootBullet(): Unit = level += new Projectile(x, y, level, Random.nextInt(4), 8, false, false)
+
+  def x: Double = _x
 
   def isRemoved(): Boolean = dead
 

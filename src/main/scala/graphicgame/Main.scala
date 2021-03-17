@@ -19,13 +19,13 @@ object Main extends JFXApp {
   var player1 = new Player(22, 22, currentLevel)
   currentLevel += player1
 
-  val gen1 = new Generator(34, 34, currentLevel)
-  currentLevel += new Goal(38, 38, currentLevel, false)
+  val gen1 = new Generator(9, 9, currentLevel, 0)
+  currentLevel += new Tower(3, 3, currentLevel, false, 0)
   currentLevel += gen1
 
-  val gen2 = new Generator(68, 68, currentLevel)
+  val gen2 = new Generator(111, 111, currentLevel, 1)
   currentLevel += gen2
-  currentLevel += new Goal(64, 64, currentLevel, false)
+  currentLevel += new Tower(117, 117, currentLevel, false, 1)
 
 
   stage = new JFXApp.PrimaryStage {

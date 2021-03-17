@@ -3,9 +3,6 @@ package graphicgame
 import scalafx.scene.canvas.GraphicsContext
 import scalafx.scene.image.Image
 
-/**
- * change the images, entities to fit the style of the game.
- */
 
 class Renderer2D(gc: GraphicsContext, blockSize: Double) {
   // Put variables for images here
@@ -13,9 +10,11 @@ class Renderer2D(gc: GraphicsContext, blockSize: Double) {
   private val wallImage = Renderer2D.loadImage("/images/wall.png")
   private val playerImage = Renderer2D.loadImage("/images/player.png")
   private val enemyImage = Renderer2D.loadImage("/images/enemy.png")
-  private val generatorImage = Renderer2D.loadImage("/images/generator.png")
+  private val generatorImageRed = Renderer2D.loadImage("/images/generatorRed.png")
+  private val generatorImageBlue = Renderer2D.loadImage("/images/generatorBlue.png")
   private val bulletImage = Renderer2D.loadImage("/images/bullet.png")
-  private val goalImage = Renderer2D.loadImage("/images/goal.png")
+  private val towerImageRed = Renderer2D.loadImage("/images/towerRed.png")
+  private val towerImageBlue = Renderer2D.loadImage("/images/towerBlue.png")
   private var lastCenterX = 0.0
   private var lastCenterY = 0.0
 
@@ -50,9 +49,9 @@ class Renderer2D(gc: GraphicsContext, blockSize: Double) {
       val img = e match {
         case p: Player => playerImage
         case e: Enemy => enemyImage
-        case b: Bullet => bulletImage
-        case g: Goal => goalImage
-        case g: Generator => generatorImage
+        case b: Projectile => bulletImage
+        case t: Tower => if (t.getTeam == 1) towerImageRed else towerImageBlue
+        case g: Generator => if (g.getTeam == 1) generatorImageRed else generatorImageBlue
       }
       if (level.maze.wrap) {
         for (rx <- -1 to 1; ry <- -1 to 1)
