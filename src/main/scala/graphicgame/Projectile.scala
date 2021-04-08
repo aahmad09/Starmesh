@@ -31,7 +31,7 @@ class Projectile(private var _x: Double, private var _y: Double,
     }
 
     if (isPlayerGenerated) {
-      enemyTargetList.foreach {
+      enemyTargetList.par.foreach {
         case None =>
         case Some(tgt) =>
           if (Entity.intersect(this, tgt)) dead = true
@@ -39,7 +39,7 @@ class Projectile(private var _x: Double, private var _y: Double,
     }
 
     if (isPlayerGenerated) {
-      towersList.foreach {
+      towersList.par.foreach {
         case None =>
         case Some(tgt) =>
           if (Entity.intersect(this, tgt)) dead = true
@@ -47,7 +47,7 @@ class Projectile(private var _x: Double, private var _y: Double,
     }
 
     if (isPlayerGenerated) {
-      enemyProjectilesList.foreach {
+      enemyProjectilesList.par.foreach {
         case None =>
         case Some(tgt) =>
           if (Entity.intersect(this, tgt)) dead = true

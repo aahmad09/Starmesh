@@ -10,7 +10,7 @@ import scalafx.scene.paint.Color
 
 object Main extends JFXApp {
 
-  val maze: Maze = RandomMaze(6, wrap = false, 20, 20, 0.6)
+  val maze: Maze = RandomMaze(6, wrap = false, 10, 10, 0.6)
   val canvas = new Canvas(1200, 800)
   val gc: GraphicsContext = canvas.graphicsContext2D
   val renderer = new Renderer2D(gc, 20)
@@ -23,9 +23,9 @@ object Main extends JFXApp {
   currentLevel += new Tower(3, 3, currentLevel, false, 0)
   currentLevel += gen1
 
-  val gen2 = new Generator(111, 111, currentLevel, 1)
+  val gen2 = new Generator(51, 51, currentLevel, 1)
   currentLevel += gen2
-  currentLevel += new Tower(117, 117, currentLevel, false, 1)
+  currentLevel += new Tower(57, 57, currentLevel, false, 1)
 
 
   stage = new JFXApp.PrimaryStage {

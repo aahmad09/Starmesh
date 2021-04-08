@@ -3,8 +3,7 @@ package graphicgame
 class Generator(private var _x: Double, private var _y: Double,
                 val level: Level, val team: Int) extends Entity {
 
-  //0: blue, 1: red
-  val timerConstant = 0.1
+  //for teams -> 0: blue, 1: red
   val spawnTimeConstant = 5.0
   val spawnProximity = 30
   private var spawnTime = spawnTimeConstant

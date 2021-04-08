@@ -4,7 +4,7 @@ class Player(private var _x: Double, private var _y: Double,
              val level: Level) extends Entity {
 
   val speed = 5
-  val reloadTimeConstant: Double = 1.5
+  val reloadTimeConstant: Double = 1.0
   private var dead: Boolean = false
   private var upHeld, downHeld, leftHeld, rightHeld, fireUp, fireDown, fireRight, fireLeft = false
   private var bulletReloadTimer = reloadTimeConstant
@@ -23,13 +23,13 @@ class Player(private var _x: Double, private var _y: Double,
       bulletReloadTimer -= dt
     }
 
-    level.enemyProjectiles.foreach { x =>
+    level.enemyProjectiles.par.foreach { x =>
       if (Entity.intersect(this, x)) {
         dead = true
       }
     }
 
-    level.enemies.foreach { x =>
+    level.enemies.par.foreach { x =>
       if (Entity.intersect(this, x)) {
         dead = true
       }

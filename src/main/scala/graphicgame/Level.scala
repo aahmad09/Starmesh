@@ -36,7 +36,7 @@ class Level(val maze: Maze,
   }
 
   def updateAll(delay: Double): Unit = {
-    _entities.foreach(_.update(delay))
+    _entities.par.foreach(_.update(delay))
     _entities = _entities.filterNot(_.isRemoved())
   }
 
