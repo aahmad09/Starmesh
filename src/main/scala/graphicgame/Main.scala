@@ -37,7 +37,7 @@ object Main extends JFXApp {
         if (lastTime >= 0) {
           val dt = (time - lastTime) / 1e9
           currentLevel.updateAll(dt)
-          renderer.render(currentLevel, player1.x, player1.y)
+          renderer.render(currentLevel.makePassable(), player1.x, player1.y)
         }
         lastTime = time
       })

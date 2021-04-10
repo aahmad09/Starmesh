@@ -8,7 +8,7 @@ class Generator(private var _x: Double, private var _y: Double,
   private var spawnTime = spawnTimeConstant
 
   def update(dt: Double): Unit = {
-    val targetList: Seq[Option[Player]] = for (e <- level.players) yield Option(e)
+    val targetList: List[Option[Player]] = for (e <- level.players) yield Option(e)
 
     targetList.foreach {
       case None =>

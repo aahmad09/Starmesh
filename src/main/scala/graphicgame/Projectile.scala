@@ -2,13 +2,14 @@ package graphicgame
 
 class Projectile(private var _x: Double, private var _y: Double,
                  val level: Level,
-                 val dir: Int, val speed: Int, private var dead: Boolean, private val playerGenerated: Boolean) extends Entity {
+                 val dir: Int, val speed: Int, private var dead: Boolean,
+                 private val playerGenerated: Boolean) extends Entity {
 
   def update(dt: Double): Unit = {
-    val playerTargetList: Seq[Option[Player]] = for (e <- level.players) yield Option(e)
-    val enemyTargetList: Seq[Option[Enemy]] = for (e <- level.enemies) yield Option(e)
-    val towersList: Seq[Option[Tower]] = for (e <- level.towers) yield Option(e)
-    val enemyProjectilesList: Seq[Option[Projectile]] = for (e <- level.enemyProjectiles) yield Option(e)
+    val playerTargetList: List[Option[Player]] = for (e <- level.players) yield Option(e)
+    val enemyTargetList: List[Option[Enemy]] = for (e <- level.enemies) yield Option(e)
+    val towersList: List[Option[Tower]] = for (e <- level.towers) yield Option(e)
+    val enemyProjectilesList: List[Option[Projectile]] = for (e <- level.enemyProjectiles) yield Option(e)
 
     // 0 -> right, 1 -> left, 2 -> down, 3 -> up
     dir match {

@@ -8,7 +8,7 @@ class Tower(private var _x: Double, private var _y: Double,
   private var health: Int = 10
 
   def update(dt: Double): Unit = {
-    val targetList: Seq[Option[Projectile]] = for (e <- level.playerProjectiles) yield Option(e)
+    val targetList: List[Option[Projectile]] = for (e <- level.playerProjectiles) yield Option(e)
     targetList.foreach {
       case None =>
       case Some(tgt) =>

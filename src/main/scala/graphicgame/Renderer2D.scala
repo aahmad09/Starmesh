@@ -25,7 +25,7 @@ class Renderer2D(gc: GraphicsContext, blockSize: Double) {
 
   def pixelsToBlocksY(py: Double): Double = (py - gc.canvas.getHeight / 2) / blockSize + lastCenterY
 
-  def render(level: Level, cx: Double, cy: Double): Unit = {
+  def render(pLevel: PassableLevel, cx: Double, cy: Double): Unit = {
     lastCenterX = cx
     lastCenterY = cy
 
@@ -37,7 +37,7 @@ class Renderer2D(gc: GraphicsContext, blockSize: Double) {
       x <- cx.toInt - drawWidth / 2 - 1 to cx.toInt + drawWidth / 2 + 1
       y <- cy.toInt - drawHeight / 2 - 1 to cy.toInt + drawHeight / 2 + 1
     } {
-      val img = level.maze(x, y) match {
+      val img = pLevel.maze(x, y) match {
         case Wall => wallImage
         case Floor => floorImage
       }
@@ -45,18 +45,19 @@ class Renderer2D(gc: GraphicsContext, blockSize: Double) {
     }
 
     // Draw entities
-    for (e <- level.entities) {
-      val img = e match {
-        case p: Player => playerImage
-        case e: Enemy => if (e.team == 1) enemyImageRed else enemyImageBlue
-        case b: Projectile => bulletImage
-        case t: Tower => if (t.team == 1) towerImageRed else towerImageBlue
-        case g: Generator => if (g.team == 1) generatorImageRed else generatorImageBlue
+    for (e <- pLevel.entities) {
+      val img = e.style match {
+        case 0 => playerImage
+        case 1 => if (e.team == 1) enemyImageRed else enemyImageBlue
+        case 2 => bulletImage
+        case 3 => if (e.team == 1) generatorImageRed else generatorImageBlue
+        case 4 => if (e.team == 1) towerImageRed else towerImageBlue
       }
-      if (level.maze.wrap) {
+
+      if (pLevel.maze.wrap) {
         for (rx <- -1 to 1; ry <- -1 to 1)
-          gc.drawImage(img, blocksToPixelsX(e.x - e.width / 2 + rx * level.maze.width),
-            blocksToPixelsY(e.y - e.height / 2 + ry * level.maze.height), e.width * blockSize, e.height * blockSize)
+          gc.drawImage(img, blocksToPixelsX(e.x - e.width / 2 + rx * pLevel.maze.width),
+            blocksToPixelsY(e.y - e.height / 2 + ry * pLevel.maze.height), e.width * blockSize, e.height * blockSize)
       } else {
         gc.drawImage(img, blocksToPixelsX(e.x - e.width / 2), blocksToPixelsY(e.y - e.height / 2), e.width * blockSize,
           e.height * blockSize)

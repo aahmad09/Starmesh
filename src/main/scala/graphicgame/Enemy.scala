@@ -13,7 +13,7 @@ class Enemy(private var _x: Double, private var _y: Double,
   private var shootDelay = shootDelayConstant
 
   def update(dt: Double): Unit = {
-    val targetList: Seq[Option[Player]] = for (e <- level.players) yield Option(e)
+    val targetList: List[Option[Player]] = for (e <- level.players) yield Option(e)
 
     targetList.par.foreach {
       case None =>
@@ -55,7 +55,7 @@ class Enemy(private var _x: Double, private var _y: Double,
 
   def shootBullet(): Unit = level += new Projectile(x, y, level, Random.nextInt(4), 8, false, false)
 
-  def makePassable(): PassableEntity = PassableEntity(1, 2, x, y, width, height)
+  def makePassable(): PassableEntity = PassableEntity(1, team, x, y, width, height)
 
   def y: Double = _y
 

@@ -44,19 +44,19 @@ class Level(val maze: Maze,
 
   def makePassable(): PassableLevel = PassableLevel(maze, _entities.map(_.makePassable()))
 
-  def players: Seq[Player] = _entities.collect { case p: Player => p }
+  def players: List[Player] = _entities.collect { case p: Player => p }
 
-  def enemies: Seq[Enemy] = _entities.collect { case e: Enemy => e }
+  def enemies: List[Enemy] = _entities.collect { case e: Enemy => e }
 
-  def playerProjectiles: Seq[Projectile] = _entities.collect { case b: Projectile => b }.filter(_.isPlayerGenerated)
+  def playerProjectiles: List[Projectile] = _entities.collect { case b: Projectile => b }.filter(_.isPlayerGenerated)
 
-  def enemyProjectiles: Seq[Projectile] = _entities.collect { case b: Projectile => b }.filter(!_.isPlayerGenerated)
+  def enemyProjectiles: List[Projectile] = _entities.collect { case b: Projectile => b }.filter(!_.isPlayerGenerated)
 
-  def allProjectiles: Seq[Projectile] = _entities.collect { case b: Projectile => b }
+  def allProjectiles: List[Projectile] = _entities.collect { case b: Projectile => b }
 
-  def towers: Seq[Tower] = _entities.collect { case t: Tower => t }
+  def towers: List[Tower] = _entities.collect { case t: Tower => t }
 
-  def generators: Seq[Generator] = _entities.collect { case g: Generator => g }
+  def generators: List[Generator] = _entities.collect { case g: Generator => g }
 
 }
 

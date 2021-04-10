@@ -4,19 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecc7af9e-42ef-432f-ae69-6332b35f7abe" name="Default Changelist" comment="Refactoring and changed player reload timer">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/scala_compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/enemy.png" beforeDir="false" />
+    <list default="true" id="ecc7af9e-42ef-432f-ae69-6332b35f7abe" name="Default Changelist" comment="Added PassableEntities and concepts of team">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Enemy.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Enemy.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Entity.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Entity.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Generator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Generator.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Level.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Level.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Main.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Player.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Player.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/PassableLevel.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/PassableLevel.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Projectile.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Projectile.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Renderer2D.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Renderer2D.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Renderer3D.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Renderer3D.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Tower.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Tower.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -118,7 +115,7 @@
       <workItem from="1617894471918" duration="1796000" />
       <workItem from="1617916383776" duration="964000" />
       <workItem from="1617989037672" duration="6458000" />
-      <workItem from="1618011906710" duration="3930000" />
+      <workItem from="1618011906710" duration="7282000" />
     </task>
     <task id="LOCAL-00001" summary="Refactoring and changed player reload timer">
       <created>1617894804536</created>
@@ -127,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617894804536</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added PassableEntities and concepts of team">
+      <created>1618019641037</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1618019641037</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +151,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Refactoring and changed player reload timer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring and changed player reload timer" />
+    <MESSAGE value="Added PassableEntities and concepts of team" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added PassableEntities and concepts of team" />
   </component>
 </project>
