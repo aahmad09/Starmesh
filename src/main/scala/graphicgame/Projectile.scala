@@ -31,7 +31,7 @@ class Projectile(private var _x: Double, private var _y: Double,
     }
 
     if (isPlayerGenerated) {
-      enemyTargetList.par.foreach {
+      enemyTargetList.foreach {
         case None =>
         case Some(tgt) =>
           if (Entity.intersect(this, tgt)) dead = true
@@ -39,7 +39,7 @@ class Projectile(private var _x: Double, private var _y: Double,
     }
 
     if (isPlayerGenerated) {
-      towersList.par.foreach {
+      towersList.foreach {
         case None =>
         case Some(tgt) =>
           if (Entity.intersect(this, tgt)) dead = true
@@ -47,7 +47,7 @@ class Projectile(private var _x: Double, private var _y: Double,
     }
 
     if (isPlayerGenerated) {
-      enemyProjectilesList.par.foreach {
+      enemyProjectilesList.foreach {
         case None =>
         case Some(tgt) =>
           if (Entity.intersect(this, tgt)) dead = true
@@ -57,18 +57,20 @@ class Projectile(private var _x: Double, private var _y: Double,
 
   }
 
+  def isPlayerGenerated: Boolean = playerGenerated
+
+  def makePassable(): PassableEntity = PassableEntity(2, 2, x, y, width, height)
+
   def width: Double = 0.5
 
   def height: Double = 0.5
 
-  def isPlayerGenerated: Boolean = playerGenerated
+  def x: Double = _x
+
+  def y: Double = _y
 
   def isRemoved(): Boolean = dead
 
   def postCheck(): Unit = None
-
-  def x: Double = _x
-
-  def y: Double = _y
 
 }

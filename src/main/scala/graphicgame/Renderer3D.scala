@@ -1,10 +1,10 @@
 package graphicgame
 
 import scalafx.Includes._
-import scalafx.scene.{AmbientLight, PerspectiveCamera, Scene}
 import scalafx.scene.image.Image
 import scalafx.scene.paint.{Color, PhongMaterial}
 import scalafx.scene.shape.{Box, Shape3D}
+import scalafx.scene.{AmbientLight, PerspectiveCamera, Scene}
 
 import scala.collection.mutable
 

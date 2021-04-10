@@ -29,18 +29,20 @@ class Level(val maze: Maze,
     10000000
   }
 
-  def entities: Seq[Entity] = _entities
+  def entities: List[Entity] = _entities
 
   def +=(e: Entity): Unit = {
     _entities = e +: _entities
   }
 
   def updateAll(delay: Double): Unit = {
-    _entities.par.foreach(_.update(delay))
+    _entities.foreach(_.update(delay))
     _entities = _entities.filterNot(_.isRemoved())
   }
 
   def distanceFrom(x: Double, y: Double, e: Entity): Double = math.abs(x - e.x) + math.abs(y - e.y)
+
+  def makePassable(): PassableLevel = PassableLevel(maze, _entities.map(_.makePassable()))
 
   def players: Seq[Player] = _entities.collect { case p: Player => p }
 
@@ -55,7 +57,6 @@ class Level(val maze: Maze,
   def towers: Seq[Tower] = _entities.collect { case t: Tower => t }
 
   def generators: Seq[Generator] = _entities.collect { case g: Generator => g }
-
 
 }
 

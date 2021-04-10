@@ -5,7 +5,7 @@ import scala.util.Random
 
 class Enemy(private var _x: Double, private var _y: Double,
             val level: Level,
-            private var dead: Boolean) extends Entity {
+            private var dead: Boolean, val team: Int) extends Entity {
 
   val speed = 3
   val shootDelayConstant = 1.5
@@ -15,7 +15,7 @@ class Enemy(private var _x: Double, private var _y: Double,
   def update(dt: Double): Unit = {
     val targetList: Seq[Option[Player]] = for (e <- level.players) yield Option(e)
 
-    targetList.foreach {
+    targetList.par.foreach {
       case None =>
       case Some(tgt) =>
         if (level.distanceFrom(x, y, tgt) < targetProximity) {
@@ -53,15 +53,17 @@ class Enemy(private var _x: Double, private var _y: Double,
     }
   }
 
+  def shootBullet(): Unit = level += new Projectile(x, y, level, Random.nextInt(4), 8, false, false)
+
+  def makePassable(): PassableEntity = PassableEntity(1, 2, x, y, width, height)
+
   def y: Double = _y
+
+  def x: Double = _x
 
   def width: Double = 1.0
 
   def height: Double = 1.0
-
-  def shootBullet(): Unit = level += new Projectile(x, y, level, Random.nextInt(4), 8, false, false)
-
-  def x: Double = _x
 
   def isRemoved(): Boolean = dead
 

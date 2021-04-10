@@ -17,18 +17,20 @@ class Tower(private var _x: Double, private var _y: Double,
     }
   }
 
+  def makePassable(): PassableEntity = PassableEntity(4, team, x, y, width, height)
+
   def width: Double = 3.5
 
   def height: Double = 3.5
+
+  def x: Double = _x
+
+  def y: Double = _y
 
   def getTeam: Int = team
 
   def isRemoved(): Boolean = destroyed
 
   def postCheck(): Unit = None
-
-  def x: Double = _x
-
-  def y: Double = _y
 
 }

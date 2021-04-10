@@ -3,7 +3,6 @@ package graphicgame
 class Generator(private var _x: Double, private var _y: Double,
                 val level: Level, val team: Int) extends Entity {
 
-  //for teams -> 0: blue, 1: red
   val spawnTimeConstant = 5.0
   val spawnProximity = 30
   private var spawnTime = spawnTimeConstant
@@ -23,17 +22,17 @@ class Generator(private var _x: Double, private var _y: Double,
     }
   }
 
-  def spawnEnemies(): Unit = level += new Enemy(x, y, level, false)
+  def spawnEnemies(): Unit = level += new Enemy(x, y, level, false, team)
 
   def y: Double = _y
 
   def x: Double = _x
 
+  def makePassable(): PassableEntity = PassableEntity(3, team, x, y, width, height)
+
   def width = 2
 
   def height = 2
-
-  def getTeam: Int = team
 
   def postCheck(): Unit = None
 
