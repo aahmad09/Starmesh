@@ -24,9 +24,9 @@ class Generator(private var _x: Double, private var _y: Double,
 
   def spawnEnemies(): Unit = level += new Enemy(x, y, level, false, team)
 
-  def y: Double = _y
-
   def x: Double = _x
+
+  def y: Double = _y
 
   def makePassable(): PassableEntity = PassableEntity(3, team, x, y, width, height)
 

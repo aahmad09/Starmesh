@@ -53,9 +53,9 @@ class Enemy(private var _x: Double, private var _y: Double,
     }
   }
 
-  def shootBullet(): Unit = level += new Projectile(x, y, level, Random.nextInt(4), 8, false, false)
+  def height: Double = 1.0
 
-  def makePassable(): PassableEntity = PassableEntity(1, team, x, y, width, height)
+  def shootBullet(): Unit = level += new Projectile(x, y, level, Random.nextInt(4), 8, false, false)
 
   def width: Double = 1.0
 
@@ -63,7 +63,7 @@ class Enemy(private var _x: Double, private var _y: Double,
 
   def y: Double = _y
 
-  def height: Double = 1.0
+  def makePassable(): PassableEntity = PassableEntity(1, team, x, y, width, height)
 
   def isRemoved(): Boolean = dead
 

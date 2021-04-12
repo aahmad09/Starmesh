@@ -5,47 +5,60 @@ import java.net.{ServerSocket, Socket}
 import java.util.concurrent.LinkedBlockingQueue
 import scala.concurrent.Future
 
-case class ConnectedClient(player: Player, sock: Socket, ois: ObjectInputStream, oos: ObjectOutputStream, level: Level)
+case class ConnectedClient(player: Player, sock: Socket, ois: ObjectInputStream, oos: ObjectOutputStream)
 
 object Server extends App {
   val maze: Maze = RandomMaze(6, wrap = false, 10, 10, 0.6)
-  val currentLevel = new Level(maze, _entities = Nil)
-  implicit val ec: scala.concurrent.ExecutionContext = scala.concurrent.ExecutionContext.global
-  val ss = new ServerSocket(8080)
-  val sendInterval = 0.03
-  private val clientQueue = new LinkedBlockingQueue[ConnectedClient]()
-  println(s"... Server is running using port ${ss.getLocalPort} ...")
+  val thisLevel = new Level(maze, _entities = Nil)
+  val startEntities = List(new Generator(9, 9, thisLevel, 0),
+    new Generator(51, 51, thisLevel, 1),
+    new Tower(3, 3, thisLevel, false, 0),
+    new Tower(57, 57, thisLevel, false, 1))
+  startEntities ::: thisLevel
 
+  implicit val ec: scala.concurrent.ExecutionContext = scala.concurrent.ExecutionContext.global
+
+  private val clientQueue = new LinkedBlockingQueue[ConnectedClient]()
+  private var clients: List[ConnectedClient] = Nil
+
+  val ss = new ServerSocket(8080)
+  println(s"... Server is running using port ${ss.getLocalPort} ...")
   Future {
     while (true) {
       val sock = ss.accept()
       println("got player with IP: " + sock.getLocalAddress)
       val oos = new ObjectOutputStream(sock.getOutputStream)
       val ois = new ObjectInputStream(sock.getInputStream)
-      val newPlayer = new Player(2, 2, currentLevel)
-      clientQueue.put(ConnectedClient(newPlayer, sock, ois, oos, currentLevel))
+      val newPlayer = new Player(26, 26, thisLevel)
+      clientQueue.put(ConnectedClient(newPlayer, sock, ois, oos))
     }
   }
-  private var clients: List[ConnectedClient] = Nil
+
+  val sendInterval = 0.01
   private var sendDelay = 0.0
   private var lastTime = -1L
   while (true) {
     while (!clientQueue.isEmpty) {
       val cc = clientQueue.take()
       clients ::= cc
+      thisLevel += cc.player
     }
+
     val time = System.nanoTime()
+
     if (lastTime >= 0) {
       val delay = (time - lastTime) / 1e9
       sendDelay += delay
       val sendLevels = sendDelay > sendInterval
       if (sendLevels) sendDelay = 0.0
-      for (ConnectedClient(player, sock, ois, oos, level) <- clients) {
-        val playerUpdateInfo = UpdateInfo(level.makePassable(), player.x, player.y)
+      thisLevel.updateAll(delay)
+      for (ConnectedClient(player, sock, ois, oos) <- clients) {
+        val playerUpdateInfo = UpdateInfo(thisLevel.makePassable(), player.x, player.y)
+        if (sendLevels) oos.writeObject(playerUpdateInfo)
+
         if (ois.available() > 0) {
           val pressRelease = ois.readInt()
           val key = ois.readInt()
-          println(pressRelease, key)
           if (pressRelease == ControlKeys.Pressed) {
             key match {
               case ControlKeys.MoveLeft => player.leftPressed()
@@ -72,8 +85,6 @@ object Server extends App {
             }
           }
         }
-        level.updateAll(delay)
-        if (sendLevels) oos.writeObject(playerUpdateInfo)
       }
     }
     lastTime = time

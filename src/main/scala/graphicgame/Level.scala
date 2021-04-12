@@ -31,9 +31,9 @@ class Level(val maze: Maze,
 
   def entities: List[Entity] = _entities
 
-  def +=(e: Entity): Unit = {
-    _entities = e +: _entities
-  }
+  def +=(e: Entity): Unit = _entities = e +: _entities
+
+  def :::(listEntities: List[Entity]): Unit = _entities = _entities ::: listEntities
 
   def updateAll(delay: Double): Unit = {
     _entities.foreach(_.update(delay))

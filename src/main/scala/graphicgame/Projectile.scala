@@ -60,11 +60,11 @@ class Projectile(private var _x: Double, private var _y: Double,
 
   def isPlayerGenerated: Boolean = playerGenerated
 
-  def makePassable(): PassableEntity = PassableEntity(2, 2, x, y, width, height)
-
   def width: Double = 0.5
 
   def height: Double = 0.5
+
+  def makePassable(): PassableEntity = PassableEntity(2, 2, x, y, width, height)
 
   def x: Double = _x
 
