@@ -13,29 +13,25 @@ class Enemy(private var _x: Double, private var _y: Double,
   private var shootDelay = shootDelayConstant
 
   def update(dt: Double): Unit = {
-    val targetList: List[Option[Player]] = for (e <- level.players) yield Option(e)
+    val closestTarget: Player = if (level.players.nonEmpty) level.players.minBy(level.distanceFrom(x, y, _)) else null
 
-    targetList.par.foreach {
-      case None =>
-      case Some(tgt) =>
-        if (level.distanceFrom(x, y, tgt) < targetProximity) {
-          Array(3 -> level.shortestPath(x, y - 1, tgt.x, tgt.y, width, height, this),
-            2 -> level.shortestPath(x, y + 1, tgt.x, tgt.y, width, height, this),
-            0 -> level.shortestPath(x + 1, y, tgt.x, tgt.y, width, height, this),
-            1 -> level.shortestPath(x - 1, y, tgt.x, tgt.y, width, height, this)).minBy(_._2)._1
-          match {
-            case 0 => move(speed * dt, 0)
-            case 1 => move(-speed * dt, 0)
-            case 2 => move(0, speed * dt)
-            case 3 => move(0, -speed * dt)
-          }
-          if (shootDelay <= 0) {
-            shootBullet()
-            shootDelay = shootDelayConstant
-          } else {
-            shootDelay -= dt
-          }
-        }
+    if (closestTarget != null && level.distanceFrom(x, y, closestTarget) < targetProximity) {
+      Array(3 -> level.shortestPath(x, y - 1, closestTarget.x, closestTarget.y, width, height, this),
+        2 -> level.shortestPath(x, y + 1, closestTarget.x, closestTarget.y, width, height, this),
+        0 -> level.shortestPath(x + 1, y, closestTarget.x, closestTarget.y, width, height, this),
+        1 -> level.shortestPath(x - 1, y, closestTarget.x, closestTarget.y, width, height, this)).minBy(_._2)._1
+      match {
+        case 0 => move(speed * dt, 0)
+        case 1 => move(-speed * dt, 0)
+        case 2 => move(0, speed * dt)
+        case 3 => move(0, -speed * dt)
+      }
+      if (shootDelay <= 0) {
+        shootBullet()
+        shootDelay = shootDelayConstant
+      } else {
+        shootDelay -= dt
+      }
     }
 
     level.playerProjectiles.foreach { x =>

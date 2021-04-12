@@ -6,10 +6,11 @@ class Projectile(private var _x: Double, private var _y: Double,
                  private val playerGenerated: Boolean) extends Entity {
 
   def update(dt: Double): Unit = {
-    val playerTargetList: List[Option[Player]] = for (e <- level.players) yield Option(e)
-    val enemyTargetList: List[Option[Enemy]] = for (e <- level.enemies) yield Option(e)
-    val towersList: List[Option[Tower]] = for (e <- level.towers) yield Option(e)
-    val enemyProjectilesList: List[Option[Projectile]] = for (e <- level.enemyProjectiles) yield Option(e)
+    val playerTargetList: List[Player] = level.players
+    val enemyTargetList: List[Enemy] = level.enemies
+    val towersList: List[Tower] = level.towers
+    val enemyProjectilesList: List[Projectile] = level.enemyProjectiles
+    val playerProjectilesList: List[Projectile] = level.playerProjectiles
 
     // 0 -> right, 1 -> left, 2 -> down, 3 -> up
     dir match {
@@ -23,38 +24,17 @@ class Projectile(private var _x: Double, private var _y: Double,
         _y -= speed * dt else dead = true
     }
 
-    if (!isPlayerGenerated) {
-      playerTargetList.foreach {
-        case None =>
-        case Some(tgt) =>
-          if (Entity.intersect(this, tgt)) dead = true
-      }
-    }
 
+    //check for projectile collisions and remove the projectile
     if (isPlayerGenerated) {
-      enemyTargetList.foreach {
-        case None =>
-        case Some(tgt) =>
-          if (Entity.intersect(this, tgt)) dead = true
+      if (enemyProjectilesList.nonEmpty) enemyProjectilesList.foreach(tgt => if (Entity.intersect(this, tgt)) dead = true)
+      if (enemyTargetList.nonEmpty) enemyTargetList.foreach(tgt => if (Entity.intersect(this, tgt)) dead = true)
+      if (towersList.nonEmpty) towersList.foreach(tgt => if (Entity.intersect(this, tgt)) dead = true)
+      else if (!isPlayerGenerated) {
+        if (playerTargetList.nonEmpty) playerTargetList.foreach(tgt => if (Entity.intersect(this, tgt)) dead = true)
+        if (playerProjectilesList.nonEmpty) playerProjectilesList.foreach(tgt => if (Entity.intersect(this, tgt)) dead = true)
       }
     }
-
-    if (isPlayerGenerated) {
-      towersList.foreach {
-        case None =>
-        case Some(tgt) =>
-          if (Entity.intersect(this, tgt)) dead = true
-      }
-    }
-
-    if (isPlayerGenerated) {
-      enemyProjectilesList.foreach {
-        case None =>
-        case Some(tgt) =>
-          if (Entity.intersect(this, tgt)) dead = true
-      }
-    }
-
 
   }
 
