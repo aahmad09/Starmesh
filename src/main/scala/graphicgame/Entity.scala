@@ -24,8 +24,8 @@ object Entity {
     ((e1.x - e2.x).abs < (e1.width + e2.width) / 2) && ((e1.y - e2.y).abs < (e1.height + e2.height) / 2)
   }
 
-//  class EntityStyle extends Enumeration {
-//    val player, enemy, projectile, generator, tower = Value
-//  }
+  //  class EntityStyle extends Enumeration {
+  //    val player, enemy, projectile, generator, tower = Value
+  //  }
 
 }

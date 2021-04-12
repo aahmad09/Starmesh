@@ -45,10 +45,6 @@ class Player(private var _x: Double, private var _y: Double,
     }
   }
 
-  def width = 1
-
-  def height = 1
-
   def shootBullet(): Unit = {
     if (fireLeft) level += new Projectile(x, y, level, 1, 8, false, true)
     if (fireRight) level += new Projectile(x, y, level, 0, 8, false, true)
@@ -56,13 +52,17 @@ class Player(private var _x: Double, private var _y: Double,
     if (fireDown) level += new Projectile(x, y, level, 2, 8, false, true)
   }
 
-  def x: Double = _x
-
-  def y: Double = _y
-
   def isGameOver(): Unit = if (dead) println("Game Over!")
 
   def makePassable(): PassableEntity = PassableEntity(0, 2, x, y, width, height)
+
+  def width = 1
+
+  def height = 1
+
+  def x: Double = _x
+
+  def y: Double = _y
 
   def isRemoved(): Boolean = dead
 

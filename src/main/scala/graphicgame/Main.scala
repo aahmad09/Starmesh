@@ -17,9 +17,9 @@ object Main extends JFXApp {
 
   val currentLevel = new Level(maze, List())
   val gen1 = new Generator(9, 9, currentLevel, 0)
+  val gen2 = new Generator(51, 51, currentLevel, 1)
   var player1 = new Player(22, 22, currentLevel)
   currentLevel += player1
-  val gen2 = new Generator(51, 51, currentLevel, 1)
   currentLevel += new Tower(3, 3, currentLevel, false, 0)
   currentLevel += gen1
   currentLevel += gen2

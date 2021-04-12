@@ -57,11 +57,11 @@ class Enemy(private var _x: Double, private var _y: Double,
 
   def makePassable(): PassableEntity = PassableEntity(1, team, x, y, width, height)
 
-  def y: Double = _y
+  def width: Double = 1.0
 
   def x: Double = _x
 
-  def width: Double = 1.0
+  def y: Double = _y
 
   def height: Double = 1.0
 
