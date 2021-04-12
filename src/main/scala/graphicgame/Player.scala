@@ -34,8 +34,6 @@ class Player(private var _x: Double, private var _y: Double,
         dead = true
       }
     }
-
-    isGameOver()
   }
 
   def move(dx: Double, dy: Double): Unit = {
@@ -60,7 +58,7 @@ class Player(private var _x: Double, private var _y: Double,
 
   def y: Double = _y
 
-  def isGameOver(): Unit = if (dead) println("Game Over!")
+  def isDead: Boolean = dead
 
   def makePassable(): PassableEntity = PassableEntity(0, 2, x, y, width, height)
 

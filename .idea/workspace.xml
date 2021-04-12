@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecc7af9e-42ef-432f-ae69-6332b35f7abe" name="Default Changelist" comment="Working on Client-Server networked model">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="ecc7af9e-42ef-432f-ae69-6332b35f7abe" name="Default Changelist" comment="Implemented networked graphics (grade this)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Enemy.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Enemy.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Generator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Generator.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Level.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Level.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Player.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Player.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Projectile.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Projectile.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Server.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Server.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -52,6 +47,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../GitHub (intelliJ)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -97,20 +93,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RunGame" type="CompoundRunConfigurationType">
+    <configuration name="Server+Client" type="CompoundRunConfigurationType">
       <toRun name="Client" type="Application" />
       <toRun name="Server" type="Application" />
       <method v="2" />
@@ -124,7 +107,7 @@
       <item itemvalue="Application.Client" />
       <item itemvalue="Application.Server" />
       <item itemvalue="Application.Main" />
-      <item itemvalue="Compound.RunGame" />
+      <item itemvalue="Compound.Server+Client" />
     </list>
     <recent_temporary>
       <list>
@@ -160,7 +143,9 @@
       <workItem from="1618112053971" duration="2776000" />
       <workItem from="1618173298143" duration="4398000" />
       <workItem from="1618190018145" duration="6904000" />
-      <workItem from="1618253366422" duration="1294000" />
+      <workItem from="1618253366422" duration="7280000" />
+      <workItem from="1618262727858" duration="929000" />
+      <workItem from="1618278026826" duration="1315000" />
     </task>
     <task id="LOCAL-00001" summary="Refactoring and changed player reload timer">
       <created>1617894804536</created>
@@ -190,7 +175,21 @@
       <option name="project" value="LOCAL" />
       <updated>1618191231435</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Implemented networked graphics">
+      <created>1618254955439</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1618254955439</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Implemented networked graphics (grade this)">
+      <created>1618262026287</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1618262026287</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,6 +212,10 @@
     <MESSAGE value="Added PassableEntities and concepts of team" />
     <MESSAGE value="Implemented Passable Entities" />
     <MESSAGE value="Working on Client-Server networked model" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working on Client-Server networked model" />
+    <MESSAGE value="Implemented networked model (grade this)" />
+    <MESSAGE value="Implemented networked model" />
+    <MESSAGE value="Implemented networked graphics" />
+    <MESSAGE value="Implemented networked graphics (grade this)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented networked graphics (grade this)" />
   </component>
 </project>

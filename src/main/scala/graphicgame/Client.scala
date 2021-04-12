@@ -31,8 +31,8 @@ object Client extends JFXApp {
   Future {
     while (true) {
       ois.readObject() match {
-        case updateInfo: UpdateInfo =>
-          Platform.runLater(renderer.render(updateInfo.plevel, updateInfo.cx, updateInfo.cy))
+        case UpdateInfo(plevel, cx, cy) =>
+          Platform.runLater(renderer.render(plevel, cx, cy))
         case _ =>
       }
     }

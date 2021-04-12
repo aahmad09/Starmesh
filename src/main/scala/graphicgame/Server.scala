@@ -1,6 +1,11 @@
 package graphicgame
 
-import java.io.{ObjectInputStream, ObjectOutputStream}
+/**
+ * bullets not always getting removed on collision with enemy
+ * closing client window crashes server
+ */
+
+import  java.io.{ObjectInputStream, ObjectOutputStream}
 import java.net.{ServerSocket, Socket}
 import java.util.concurrent.LinkedBlockingQueue
 import scala.concurrent.Future
@@ -34,7 +39,7 @@ object Server extends App {
     }
   }
 
-  val sendInterval = 0.01
+  val sendInterval = 0.015
   private var sendDelay = 0.0
   private var lastTime = -1L
   while (true) {
@@ -43,19 +48,17 @@ object Server extends App {
       clients ::= cc
       thisLevel += cc.player
     }
-
     val time = System.nanoTime()
-
     if (lastTime >= 0) {
       val delay = (time - lastTime) / 1e9
       sendDelay += delay
       val sendLevels = sendDelay > sendInterval
       if (sendLevels) sendDelay = 0.0
       thisLevel.updateAll(delay)
+      val plevel = thisLevel.makePassable()
       for (ConnectedClient(player, sock, ois, oos) <- clients) {
-        val playerUpdateInfo = UpdateInfo(thisLevel.makePassable(), player.x, player.y)
+        val playerUpdateInfo = UpdateInfo(plevel, player.x, player.y)
         if (sendLevels) oos.writeObject(playerUpdateInfo)
-
         if (ois.available() > 0) {
           val pressRelease = ois.readInt()
           val key = ois.readInt()
