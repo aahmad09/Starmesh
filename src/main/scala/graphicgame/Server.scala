@@ -3,6 +3,7 @@ package graphicgame
 /**
  * bullets not always getting removed on collision with enemy
  * closing client window crashes server
+ *
  */
 
 import  java.io.{ObjectInputStream, ObjectOutputStream}
