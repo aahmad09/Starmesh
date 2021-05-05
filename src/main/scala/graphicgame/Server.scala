@@ -2,11 +2,10 @@ package graphicgame
 
 /**
  * bullets not always getting removed on collision with enemy
- * closing client window crashes server
- *
- */
+ * closing client window crashes server - use a set of deadPlayers: ConnectedClients and remove after for loop
+ **/
 
-import  java.io.{ObjectInputStream, ObjectOutputStream}
+import java.io.{ObjectInputStream, ObjectOutputStream}
 import java.net.{ServerSocket, Socket}
 import java.util.concurrent.LinkedBlockingQueue
 import scala.concurrent.Future
@@ -16,11 +15,6 @@ case class ConnectedClient(player: Player, sock: Socket, ois: ObjectInputStream,
 object Server extends App {
   val maze: Maze = RandomMaze(6, wrap = false, 10, 10, 0.6)
   val thisLevel = new Level(maze, _entities = Nil)
-  val startEntities = List(new Generator(9, 9, thisLevel, 0),
-    new Generator(51, 51, thisLevel, 1),
-    new Tower(3, 3, thisLevel, false, 0),
-    new Tower(57, 57, thisLevel, false, 1))
-  startEntities ::: thisLevel
 
   implicit val ec: scala.concurrent.ExecutionContext = scala.concurrent.ExecutionContext.global
 
@@ -35,7 +29,9 @@ object Server extends App {
       println("got player with IP: " + sock.getLocalAddress)
       val oos = new ObjectOutputStream(sock.getOutputStream)
       val ois = new ObjectInputStream(sock.getInputStream)
-      val newPlayer = new Player(26, 26, thisLevel)
+      val temp = scala.util.Random.nextInt(2)
+      println(temp)
+      val newPlayer = new Player(26, 26, thisLevel, temp)
       clientQueue.put(ConnectedClient(newPlayer, sock, ois, oos))
     }
   }
@@ -62,7 +58,7 @@ object Server extends App {
         if (sendLevels) oos.writeObject(playerUpdateInfo)
         if (ois.available() > 0) {
           val pressRelease = ois.readInt()
-          val key = ois.readInt()
+          val key = ois.readInt() //disconnecting, exception here
           if (pressRelease == ControlKeys.Pressed) {
             key match {
               case ControlKeys.MoveLeft => player.leftPressed()

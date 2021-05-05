@@ -1,7 +1,7 @@
 package graphicgame
 
 class Player(private var _x: Double, private var _y: Double,
-             val level: Level) extends Entity {
+             val level: Level, val team: Int) extends Entity {
 
   val speed = 5
   val reloadTimeConstant: Double = 1.0

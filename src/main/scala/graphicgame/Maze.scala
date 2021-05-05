@@ -14,18 +14,6 @@ case object Floor extends CellType {
 case object Wall extends CellType {
   def passable(entity: Entity): Boolean = false
 }
-
-/*
- If you have things like doors, stairs, or other types of cells, put them here. I've included some ideas.
-case class Door(key: Int) extends CellType {
-  def passable(entity: Entity): Boolean = false // replace with a check if they have the right key.
-}
-
-case class Stairs(destLevel: Level, destX: Double, destY: Double) extends CellType {
-  def passable(entity: Entity): Boolean = true // replace with code that check if this entity type can follow stairs.
-}
-*/
-
 /**
  * This is the abstract supertype of different maze types. I don't recommend editing this. If you want your
  * own type of maze, make a subtype.

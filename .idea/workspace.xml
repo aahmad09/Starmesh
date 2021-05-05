@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecc7af9e-42ef-432f-ae69-6332b35f7abe" name="Default Changelist" comment="Implemented networked graphics (grade this)">
+    <list default="true" id="ecc7af9e-42ef-432f-ae69-6332b35f7abe" name="Default Changelist" comment="Implemented networked graphics (grade THIS)">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/player.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Enemy.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Enemy.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Entity.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Entity.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Level.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Level.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Main.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/oldFiles/Main.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Player.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Player.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Renderer2D.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Renderer2D.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Server.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Server.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +58,12 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Trinity\Academics\SP2021\CSCI-1321-3 Principles Computer Science II\graphic-game-s21-aahmad09\src\main\scala\oldFiles" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false">
@@ -89,6 +101,17 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -145,7 +168,16 @@
       <workItem from="1618190018145" duration="6904000" />
       <workItem from="1618253366422" duration="7280000" />
       <workItem from="1618262727858" duration="929000" />
-      <workItem from="1618278026826" duration="1315000" />
+      <workItem from="1618278026826" duration="1705000" />
+      <workItem from="1618326166465" duration="749000" />
+      <workItem from="1618330623501" duration="1927000" />
+      <workItem from="1618360973087" duration="267000" />
+      <workItem from="1618436273933" duration="7000" />
+      <workItem from="1618959827547" duration="159000" />
+      <workItem from="1619810352367" duration="178000" />
+      <workItem from="1619817509791" duration="19000" />
+      <workItem from="1619888123961" duration="634000" />
+      <workItem from="1620238968175" duration="2537000" />
     </task>
     <task id="LOCAL-00001" summary="Refactoring and changed player reload timer">
       <created>1617894804536</created>
@@ -189,7 +221,21 @@
       <option name="project" value="LOCAL" />
       <updated>1618262026287</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Implemented networked graphics (grade this)">
+      <created>1618279534103</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1618279534103</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Implemented networked graphics (grade THIS)">
+      <created>1618279742771</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1618279742771</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,6 +262,7 @@
     <MESSAGE value="Implemented networked model" />
     <MESSAGE value="Implemented networked graphics" />
     <MESSAGE value="Implemented networked graphics (grade this)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented networked graphics (grade this)" />
+    <MESSAGE value="Implemented networked graphics (grade THIS)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented networked graphics (grade THIS)" />
   </component>
 </project>

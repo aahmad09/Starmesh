@@ -5,11 +5,17 @@ import scala.collection.mutable
 class Level(val maze: Maze,
             private var _entities: List[Entity]) {
 
+  //spawn in entities and objects
+  List(new Generator(9, 9, this, 0),
+    new Generator(51, 51, this, 1),
+    new Tower(3, 3, this, false, 0),
+    new Tower(57, 57, this, false, 1)) ::: this
+
   def shortestPath(sx: Double, sy: Double, ex: Double, ey: Double,
                    width: Double, height: Double, e: Entity): Int = {
     val offsets: Array[(Int, Int)] = Array((1, 0), (-1, 0), (0, 1), (0, -1))
     val queue = new ArrayQueue[(Double, Double, Int)]()
-    var visited = mutable.Set[(Double, Double)](sx -> sy)
+    val visited = mutable.Set[(Double, Double)](sx -> sy)
     if (maze.isClear(sx, sy, width, height, e)) {
       queue.enqueue((sx, sy, 0))
     }

@@ -7,7 +7,8 @@ class Renderer2D(gc: GraphicsContext, blockSize: Double) {
   // Put variables for images here
   private val floorImage = Renderer2D.loadImage("/images/floor.png")
   private val wallImage = Renderer2D.loadImage("/images/wall.png")
-  private val playerImage = Renderer2D.loadImage("/images/player.png")
+  private val playerImageRed = Renderer2D.loadImage("/images/playerRed.png")
+  private val playerImageBlue = Renderer2D.loadImage("/images/playerBlue.png")
   private val enemyImageBlue = Renderer2D.loadImage("/images/enemyBlue.png")
   private val enemyImageRed = Renderer2D.loadImage("/images/enemyRed.png")
   private val generatorImageRed = Renderer2D.loadImage("/images/generatorRed.png")
@@ -47,7 +48,7 @@ class Renderer2D(gc: GraphicsContext, blockSize: Double) {
     // Draw entities
     for (e <- pLevel.entities) {
       val img = e.style match {
-        case 0 => playerImage
+        case 0 => if (e.team == 1) playerImageBlue else playerImageRed //TODO: players are only red
         case 1 => if (e.team == 1) enemyImageRed else enemyImageBlue
         case 2 => bulletImage
         case 3 => if (e.team == 1) generatorImageRed else generatorImageBlue

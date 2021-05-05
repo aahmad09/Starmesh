@@ -8,7 +8,7 @@ class Enemy(private var _x: Double, private var _y: Double,
             private var dead: Boolean, val team: Int) extends Entity {
 
   val speed = 3
-  val shootDelayConstant = 2.0
+  val shootDelayConstant = 3.0
   val targetProximity = 31
   private var shootDelay = shootDelayConstant
 
