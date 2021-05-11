@@ -13,7 +13,9 @@ class Enemy(private var _x: Double, private var _y: Double,
   private var shootDelay = shootDelayConstant
 
   def update(dt: Double): Unit = {
-    val closestTarget: Player = if (level.players.nonEmpty) level.players.minBy(level.distanceFrom(x, y, _)) else null
+    val oppositeTeamPlayers: Seq[Player] = if (team == Styles_Teams.red) level.playersBlue else level.playersRed
+    val oppositeTeamProjectiles = if (team == Styles_Teams.red) level.playerProjectilesBlue else level.playerProjectilesRed
+    val closestTarget: Player = if (oppositeTeamPlayers.nonEmpty) oppositeTeamPlayers.minBy(level.distanceFrom(x, y, _)) else null
 
     if (closestTarget != null && level.distanceFrom(x, y, closestTarget) < targetProximity) {
       Array(3 -> level.shortestPath(x, y - 1, closestTarget.x, closestTarget.y, width, height, this),
@@ -34,7 +36,7 @@ class Enemy(private var _x: Double, private var _y: Double,
       }
     }
 
-    level.playerProjectiles.foreach { x =>
+    oppositeTeamProjectiles.foreach { x =>
       if (Entity.intersect(this, x)) {
         dead = true
       }
@@ -51,15 +53,15 @@ class Enemy(private var _x: Double, private var _y: Double,
 
   def height: Double = 1.0
 
-  def shootBullet(): Unit = level += new Projectile(x, y, level, Random.nextInt(4), 8, false, false)
-
-  def width: Double = 1.0
+  def shootBullet(): Unit = level += new Projectile(x, y, level, Random.nextInt(4), 8, false, false, Styles_Teams.neutral)
 
   def x: Double = _x
 
   def y: Double = _y
 
-  def makePassable(): PassableEntity = PassableEntity(1, team, x, y, width, height)
+  def width: Double = 1.0
+
+  def makePassable(): PassableEntity = PassableEntity(Styles_Teams.enemy, team, x, y, width, height)
 
   def isRemoved(): Boolean = dead
 

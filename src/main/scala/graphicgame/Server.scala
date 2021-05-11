@@ -3,7 +3,7 @@ package graphicgame
 /**
  * bullets not always getting removed on collision with enemy
  * closing client window crashes server - use a set of deadPlayers: ConnectedClients and remove after for loop
- **/
+ * */
 
 import java.io.{ObjectInputStream, ObjectOutputStream}
 import java.net.{ServerSocket, Socket}
@@ -17,11 +17,9 @@ object Server extends App {
   val thisLevel = new Level(maze, _entities = Nil)
 
   implicit val ec: scala.concurrent.ExecutionContext = scala.concurrent.ExecutionContext.global
-
-  private val clientQueue = new LinkedBlockingQueue[ConnectedClient]()
-  private var clients: List[ConnectedClient] = Nil
-
   val ss = new ServerSocket(8080)
+  val sendInterval = 0.015
+  private val clientQueue = new LinkedBlockingQueue[ConnectedClient]()
   println(s"... Server is running using port ${ss.getLocalPort} ...")
   Future {
     while (true) {
@@ -29,14 +27,11 @@ object Server extends App {
       println("got player with IP: " + sock.getLocalAddress)
       val oos = new ObjectOutputStream(sock.getOutputStream)
       val ois = new ObjectInputStream(sock.getInputStream)
-      val temp = scala.util.Random.nextInt(2)
-      println(temp)
-      val newPlayer = new Player(26, 26, thisLevel, temp)
+      val newPlayer = new Player(26, 26, thisLevel, Array(Styles_Teams.red, Styles_Teams.blue)(scala.util.Random.nextInt(2)))
       clientQueue.put(ConnectedClient(newPlayer, sock, ois, oos))
     }
   }
-
-  val sendInterval = 0.015
+  private var clients: List[ConnectedClient] = Nil
   private var sendDelay = 0.0
   private var lastTime = -1L
   while (true) {

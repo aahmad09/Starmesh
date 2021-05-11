@@ -13,7 +13,7 @@ class Renderer2D(gc: GraphicsContext, blockSize: Double) {
   private val enemyImageRed = Renderer2D.loadImage("/images/enemyRed.png")
   private val generatorImageRed = Renderer2D.loadImage("/images/generatorRed.png")
   private val generatorImageBlue = Renderer2D.loadImage("/images/generatorBlue.png")
-  private val bulletImage = Renderer2D.loadImage("/images/bullet.png")
+  private val projectileImage = Renderer2D.loadImage("/images/bullet.png")
   private val towerImageRed = Renderer2D.loadImage("/images/towerRed.png")
   private val towerImageBlue = Renderer2D.loadImage("/images/towerBlue.png")
   private var lastCenterX = 0.0
@@ -48,11 +48,11 @@ class Renderer2D(gc: GraphicsContext, blockSize: Double) {
     // Draw entities
     for (e <- pLevel.entities) {
       val img = e.style match {
-        case 0 => if (e.team == 1) playerImageBlue else playerImageRed //TODO: players are only red
-        case 1 => if (e.team == 1) enemyImageRed else enemyImageBlue
-        case 2 => bulletImage
-        case 3 => if (e.team == 1) generatorImageRed else generatorImageBlue
-        case 4 => if (e.team == 1) towerImageRed else towerImageBlue
+        case Styles_Teams.player => if (e.team == Styles_Teams.red) playerImageRed else playerImageBlue
+        case Styles_Teams.enemy => if (e.team == Styles_Teams.red) enemyImageRed else enemyImageBlue
+        case Styles_Teams.projectile => projectileImage
+        case Styles_Teams.generator => if (e.team == Styles_Teams.red) generatorImageRed else generatorImageBlue
+        case Styles_Teams.tower => if (e.team == Styles_Teams.red) towerImageRed else towerImageBlue
       }
 
       if (pLevel.maze.wrap) {

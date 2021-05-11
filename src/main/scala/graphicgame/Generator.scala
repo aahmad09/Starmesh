@@ -5,10 +5,12 @@ class Generator(private var _x: Double, private var _y: Double,
 
   val spawnTimeConstant = 5.0
   val spawnProximity = 30
+
   private var spawnTime = spawnTimeConstant
 
   def update(dt: Double): Unit = {
-    val targetList: List[Option[Player]] = for (e <- level.players) yield Option(e)
+    val oppositeTeamPlayers: List[Player] = if (team == Styles_Teams.red) level.playersBlue else if (team == Styles_Teams.blue) level.playersRed else Nil
+    val targetList: List[Option[Player]] = for (e <- oppositeTeamPlayers) yield Option(e)
 
     targetList.foreach {
       case None =>
@@ -28,7 +30,7 @@ class Generator(private var _x: Double, private var _y: Double,
 
   def y: Double = _y
 
-  def makePassable(): PassableEntity = PassableEntity(3, team, x, y, width, height)
+  def makePassable(): PassableEntity = PassableEntity(Styles_Teams.generator, team, x, y, width, height)
 
   def width = 2
 

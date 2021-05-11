@@ -10,6 +10,7 @@ class Player(private var _x: Double, private var _y: Double,
   private var bulletReloadTimer = reloadTimeConstant
 
   def update(dt: Double): Unit = {
+    val oppositeTeam: Seq[Enemy] = if (team == Styles_Teams.red) level.enemiesBlue else level.enemiesRed
 
     if (leftHeld) move(-(speed * dt), 0)
     if (rightHeld) move(speed * dt, 0)
@@ -29,7 +30,7 @@ class Player(private var _x: Double, private var _y: Double,
       }
     }
 
-    level.enemies.par.foreach { x =>
+    oppositeTeam.par.foreach { x =>
       if (Entity.intersect(this, x)) {
         dead = true
       }
@@ -48,10 +49,10 @@ class Player(private var _x: Double, private var _y: Double,
   def height = 1
 
   def shootBullet(): Unit = {
-    if (fireLeft) level += new Projectile(x, y, level, 1, 8, false, true)
-    if (fireRight) level += new Projectile(x, y, level, 0, 8, false, true)
-    if (fireUp) level += new Projectile(x, y, level, 3, 8, false, true)
-    if (fireDown) level += new Projectile(x, y, level, 2, 8, false, true)
+    if (fireLeft) level += new Projectile(x, y, level, 1, 8, false, true, team)
+    if (fireRight) level += new Projectile(x, y, level, 0, 8, false, true, team)
+    if (fireUp) level += new Projectile(x, y, level, 3, 8, false, true, team)
+    if (fireDown) level += new Projectile(x, y, level, 2, 8, false, true, team)
   }
 
   def x: Double = _x
@@ -60,7 +61,7 @@ class Player(private var _x: Double, private var _y: Double,
 
   def isDead: Boolean = dead
 
-  def makePassable(): PassableEntity = PassableEntity(0, 2, x, y, width, height)
+  def makePassable(): PassableEntity = PassableEntity(Styles_Teams.player, team, x, y, width, height)
 
   def isRemoved(): Boolean = dead
 

@@ -6,10 +6,10 @@ class Level(val maze: Maze,
             private var _entities: List[Entity]) {
 
   //spawn in entities and objects
-  List(new Generator(9, 9, this, 0),
-    new Generator(51, 51, this, 1),
-    new Tower(3, 3, this, false, 0),
-    new Tower(57, 57, this, false, 1)) ::: this
+  List(new Generator(9, 9, this, Styles_Teams.blue),
+    new Generator(51, 51, this, Styles_Teams.red),
+    new Tower(3, 3, this, false, Styles_Teams.blue),
+    new Tower(57, 57, this, false, Styles_Teams.red)) ::: this
 
   def shortestPath(sx: Double, sy: Double, ex: Double, ey: Double,
                    width: Double, height: Double, e: Entity): Int = {
@@ -50,19 +50,35 @@ class Level(val maze: Maze,
 
   def makePassable(): PassableLevel = PassableLevel(maze, _entities.map(_.makePassable()))
 
-  def players: List[Player] = _entities.collect { case p: Player => p }
+  def players: List[Player] = playersBlue ::: playersRed
 
-  def enemies: List[Enemy] = _entities.collect { case e: Enemy => e }
+  def playersBlue: List[Player] = _entities.collect { case p: Player => p }.filter(_.team == Styles_Teams.blue)
+
+  def playersRed: List[Player] = _entities.collect { case p: Player => p }.filter(_.team == Styles_Teams.red)
+
+  def enemies: List[Enemy] = enemiesBlue ::: enemiesRed
+
+  def enemiesBlue: List[Enemy] = _entities.collect { case e: Enemy => e }.filter(_.team == Styles_Teams.blue)
+
+  def enemiesRed: List[Enemy] = _entities.collect { case e: Enemy => e }.filter(_.team == Styles_Teams.red)
 
   def playerProjectiles: List[Projectile] = _entities.collect { case b: Projectile => b }.filter(_.isPlayerGenerated)
+
+  def playerProjectilesBlue: List[Projectile] = _entities.collect { case b: Projectile => b }.filter(x => x.isPlayerGenerated && x.team == Styles_Teams.blue)
+
+  def playerProjectilesRed: List[Projectile] = _entities.collect { case b: Projectile => b }.filter(x => x.isPlayerGenerated && x.team == Styles_Teams.red)
 
   def enemyProjectiles: List[Projectile] = _entities.collect { case b: Projectile => b }.filter(!_.isPlayerGenerated)
 
   def allProjectiles: List[Projectile] = _entities.collect { case b: Projectile => b }
 
-  def towers: List[Tower] = _entities.collect { case t: Tower => t }
+  def towersBlue: List[Tower] = _entities.collect { case t: Tower => t }.filter(_.team == Styles_Teams.blue)
 
-  def generators: List[Generator] = _entities.collect { case g: Generator => g }
+  def towersRed: List[Tower] = _entities.collect { case t: Tower => t }.filter(_.team == Styles_Teams.red)
+
+  def generatorsBlue: List[Generator] = _entities.collect { case g: Generator => g }.filter(_.team == Styles_Teams.blue)
+
+  def generatorsRed: List[Generator] = _entities.collect { case g: Generator => g }.filter(_.team == Styles_Teams.red)
 
 }
 
