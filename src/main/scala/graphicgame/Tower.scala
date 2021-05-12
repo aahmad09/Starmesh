@@ -29,6 +29,8 @@ class Tower(private var _x: Double, private var _y: Double,
 
   def getTeam: Int = team
 
+  def getScore: Int = health
+
   def isRemoved(): Boolean = destroyed
 
   def postCheck(): Unit = None

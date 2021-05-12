@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecc7af9e-42ef-432f-ae69-6332b35f7abe" name="Default Changelist" comment="Basic refactoring">
+    <list default="true" id="ecc7af9e-42ef-432f-ae69-6332b35f7abe" name="Default Changelist" comment="Added teams for enemies (second type of enemy)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Enemy.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Enemy.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Generator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Generator.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Client.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Client.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Level.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Level.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Maze.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Maze.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Player.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Player.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Projectile.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Projectile.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/PassableEntity.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/PassableEntity.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/PassableLevel.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/PassableLevel.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Renderer2D.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Renderer2D.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Server.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Server.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Tower.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Tower.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,17 +102,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Server+Client" type="CompoundRunConfigurationType">
       <toRun name="Client" type="Application" />
       <toRun name="Server" type="Application" />
@@ -184,6 +170,16 @@
       <workItem from="1620339243989" duration="597000" />
       <workItem from="1620507606202" duration="517000" />
       <workItem from="1620749272929" duration="3939000" />
+      <workItem from="1620753347637" duration="125000" />
+      <workItem from="1620755179851" duration="3000" />
+      <workItem from="1620778773273" duration="40000" />
+      <workItem from="1620778842097" duration="196000" />
+      <workItem from="1620779144350" duration="17000" />
+      <workItem from="1620836787726" duration="52000" />
+      <workItem from="1620838241608" duration="1436000" />
+      <workItem from="1620844052151" duration="1518000" />
+      <workItem from="1620850087906" duration="595000" />
+      <workItem from="1620852101973" duration="1634000" />
     </task>
     <task id="LOCAL-00001" summary="Refactoring and changed player reload timer">
       <created>1617894804536</created>
@@ -248,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620241728901</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added teams for enemies (second type of enemy)">
+      <created>1620753415637</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1620753415637</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,6 +280,7 @@
     <MESSAGE value="Implemented networked graphics (grade this)" />
     <MESSAGE value="Implemented networked graphics (grade THIS)" />
     <MESSAGE value="Basic refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic refactoring" />
+    <MESSAGE value="Added teams for enemies (second type of enemy)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added teams for enemies (second type of enemy)" />
   </component>
 </project>

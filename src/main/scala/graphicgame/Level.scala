@@ -5,11 +5,13 @@ import scala.collection.mutable
 class Level(val maze: Maze,
             private var _entities: List[Entity]) {
 
+  val blueTower = new Tower(3, 3, this, false, Styles_Teams.blue)
+  val redTower = new Tower(57, 57, this, false, Styles_Teams.red)
+
   //spawn in entities and objects
   List(new Generator(9, 9, this, Styles_Teams.blue),
     new Generator(51, 51, this, Styles_Teams.red),
-    new Tower(3, 3, this, false, Styles_Teams.blue),
-    new Tower(57, 57, this, false, Styles_Teams.red)) ::: this
+    blueTower, redTower) ::: this
 
   def shortestPath(sx: Double, sy: Double, ex: Double, ey: Double,
                    width: Double, height: Double, e: Entity): Int = {
@@ -48,7 +50,7 @@ class Level(val maze: Maze,
 
   def distanceFrom(x: Double, y: Double, e: Entity): Double = math.abs(x - e.x) + math.abs(y - e.y)
 
-  def makePassable(): PassableLevel = PassableLevel(maze, _entities.map(_.makePassable()))
+  def makePassable(): PassableLevel = PassableLevel(maze, _entities.map(_.makePassable()), blueTower.getScore, redTower.getScore)
 
   def players: List[Player] = playersBlue ::: playersRed
 

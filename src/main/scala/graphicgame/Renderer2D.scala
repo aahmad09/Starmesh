@@ -2,6 +2,7 @@ package graphicgame
 
 import scalafx.scene.canvas.GraphicsContext
 import scalafx.scene.image.Image
+import scalafx.scene.paint.Color
 
 class Renderer2D(gc: GraphicsContext, blockSize: Double) {
   // Put variables for images here
@@ -63,6 +64,12 @@ class Renderer2D(gc: GraphicsContext, blockSize: Double) {
         gc.drawImage(img, blocksToPixelsX(e.x - e.width / 2), blocksToPixelsY(e.y - e.height / 2), e.width * blockSize,
           e.height * blockSize)
       }
+
+      //TODO: tower health
+      gc.setStroke(Color.OrangeRed)
+      gc.strokeText(pLevel.redScore.toString, 1180, 10)
+      gc.setStroke(Color.Blue)
+      gc.strokeText(pLevel.blueScore.toString, 10, 10)
     }
 
   }
