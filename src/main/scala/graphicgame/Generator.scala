@@ -5,7 +5,6 @@ class Generator(private var _x: Double, private var _y: Double,
 
   val spawnTimeConstant = 5.0
   val spawnProximity = 30
-
   private var spawnTime = spawnTimeConstant
 
   def update(dt: Double): Unit = {
@@ -16,15 +15,13 @@ class Generator(private var _x: Double, private var _y: Double,
       case None =>
       case Some(tgt) =>
         if (spawnTime <= 0 && level.distanceFrom(x, y, tgt) < spawnProximity) {
-          spawnEnemies()
+          level += new Enemy(x, y, level, false, team)
           spawnTime = spawnTimeConstant
         } else {
           spawnTime -= dt
         }
     }
   }
-
-  def spawnEnemies(): Unit = level += new Enemy(x, y, level, false, team)
 
   def x: Double = _x
 

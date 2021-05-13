@@ -18,7 +18,7 @@ object Server extends App {
 
   implicit val ec: scala.concurrent.ExecutionContext = scala.concurrent.ExecutionContext.global
   val ss = new ServerSocket(8080)
-  val sendInterval = 0.015
+  val sendInterval = 0.017
   private val clientQueue = new LinkedBlockingQueue[ConnectedClient]()
   println(s"... Server is running using port ${ss.getLocalPort} ...")
   Future {

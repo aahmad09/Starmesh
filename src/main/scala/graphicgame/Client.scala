@@ -12,7 +12,7 @@ import java.net.Socket
 import scala.concurrent.Future
 
 object Client extends JFXApp {
-  val canvas = new Canvas(1200, 800)
+  val canvas = new Canvas(800, 800)
   val gc: GraphicsContext = canvas.graphicsContext2D
   val renderer = new Renderer2D(gc, blockSize = 20)
 
@@ -40,7 +40,7 @@ object Client extends JFXApp {
 
   stage = new JFXApp.PrimaryStage {
     title = "StarMesh"
-    scene = new Scene(1200, 800) {
+    scene = new Scene(800, 800) {
       content += canvas
 
       onKeyPressed = (ke: KeyEvent) => {
