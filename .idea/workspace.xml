@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ecc7af9e-42ef-432f-ae69-6332b35f7abe" name="Default Changelist" comment="Implemented Scoreboard">
+    <list default="true" id="ecc7af9e-42ef-432f-ae69-6332b35f7abe" name="Default Changelist" comment="Refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Client.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Client.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Generator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Generator.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Renderer2D.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Renderer2D.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/graphicgame/Server.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/graphicgame/Server.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +177,9 @@
       <workItem from="1620920596663" duration="69000" />
       <workItem from="1620940300677" duration="1119000" />
       <workItem from="1620941529922" duration="76000" />
-      <workItem from="1620941697189" duration="610000" />
+      <workItem from="1620941697189" duration="852000" />
+      <workItem from="1621020975485" duration="65000" />
+      <workItem from="1621101011226" duration="76000" />
     </task>
     <task id="LOCAL-00001" summary="Refactoring and changed player reload timer">
       <created>1617894804536</created>
@@ -260,7 +258,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620854017278</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Refactoring">
+      <created>1620945006798</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1620945006798</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,6 +296,7 @@
     <MESSAGE value="Basic refactoring" />
     <MESSAGE value="Added teams for enemies (second type of enemy)" />
     <MESSAGE value="Implemented Scoreboard" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Scoreboard" />
+    <MESSAGE value="Refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactoring" />
   </component>
 </project>

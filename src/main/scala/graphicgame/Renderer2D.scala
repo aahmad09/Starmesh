@@ -65,10 +65,10 @@ class Renderer2D(gc: GraphicsContext, blockSize: Double) {
           e.height * blockSize)
       }
 
-      gc.setStroke(Color.OrangeRed)
-      gc.strokeText("Red Tower hp: " + pLevel.redScore.toString, 700, 20)
-      gc.setStroke(Color.Blue)
-      gc.strokeText("Blue tower hp: " + pLevel.blueScore.toString, 10, 20)
+      gc.setFill(Color.OrangeRed)
+      gc.fillText("Red Tower hp: " + pLevel.redScore.toString, 700, 20)
+      gc.setFill(Color.Blue)
+      gc.fillText("Blue tower hp: " + pLevel.blueScore.toString, 10, 20)
     }
 
   }
