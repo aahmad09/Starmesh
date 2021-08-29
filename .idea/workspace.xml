@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ecc7af9e-42ef-432f-ae69-6332b35f7abe" name="Default Changelist" comment="Refactoring">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/GraphicalGame-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/GraphicalGame-build.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/GraphicalGame.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/GraphicalGame.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/scala_compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +61,7 @@
       <recent name="D:\Trinity\Academics\SP2021\CSCI-1321-3 Principles Computer Science II\graphic-game-s21-aahmad09\src\main\scala\oldFiles" />
     </key>
   </component>
-  <component name="RunManager" selected="Compound.Server+Client">
+  <component name="RunManager" selected="Application.Client">
     <configuration name="Client" type="Application" factoryName="Application" singleton="false">
       <option name="MAIN_CLASS_NAME" value="graphicgame.Client" />
       <module name="GraphicalGame" />
@@ -180,6 +185,8 @@
       <workItem from="1620941697189" duration="852000" />
       <workItem from="1621020975485" duration="65000" />
       <workItem from="1621101011226" duration="76000" />
+      <workItem from="1630249339601" duration="144000" />
+      <workItem from="1630249547582" duration="1540000" />
     </task>
     <task id="LOCAL-00001" summary="Refactoring and changed player reload timer">
       <created>1617894804536</created>
