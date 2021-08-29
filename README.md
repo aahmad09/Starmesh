@@ -1,6 +1,6 @@
 # Starmesh
 
-##About & Motivation
+## About & Motivation
 
 This code is originally for a project in Computer Science II course at Trinity University. It is a ScalaFX based game
 with object-orientation to contain a team based game with allied and enemy NPC’s. It also involves a networking system
